@@ -1,0 +1,22 @@
+agent;co_som_spravil;stav;cas;odkaz
+n8n automatizácie;Založil som plán troch automatizácií pre Bar Demo Linz a čakám na Petrove odpovede.;pracujem;2026-10-26T00:52Z;<private thread link removed>
+n8n automatizácie;Našiel som Petrov n8n Cloud účet (<your-instance>.app.n8n.cloud, skúšobná verzia od 21. 10.).;pracujem;2026-10-26T10:10Z;<private thread link removed>
+n8n automatizácie;Peter sa prihlásil do n8n, začíname automatizáciu Zoznam úloh na smenu.;pracujem;2026-10-26T10:11Z;<private thread link removed>
+n8n automatizácie;n8n asistent postavil workflow Zoznam úloh na smenu (3 kroky), prepájame Gmail.;pracujem;2026-10-26T10:17Z;<private thread link removed>
+n8n automatizácie;Založil som Google tabuľku s úlohami na smenu podľa dátumu a pripravil zadanie na úpravu workflowu.;pracujem;2026-10-26T10:32Z;<private thread link removed>
+n8n automatizácie;Workflow Zoznam úloh na smenu číta úlohy z tabuľky podľa dátumu a test e‑mailu prešiel (5 úloh).;pracujem;2026-10-26T10:38Z;<private thread link removed>
+n8n automatizácie;Automatizácia Zoznam úloh na smenu je publikovaná a posiela úlohy každý deň o 15:00.;hotové;2026-10-26T10:39Z;<private thread link removed>
+n8n automatizácie;Založil som tabuľku inventúry a pripravil zadanie pre automatizáciu nízkych zásob.;pracujem;2026-10-26T10:40Z;<private thread link removed>
+n8n automatizácie;Workflow Inventúra (upozornenie na nízke zásoby) prešiel živým testom, e‑mail s 5 položkami prišiel.;pracujem;2026-10-26T10:51Z;<private thread link removed>
+n8n automatizácie;Založil som tabuľku s vymyslenými recenziami a zadanie pre automatizáciu návrhov odpovedí.;pracujem;2026-10-26T10:56Z;<private thread link removed>
+n8n automatizácie;Automatizáciu odpovedí na recenzie sme na Petrovo želanie zrušili.;hotové;2026-10-26T10:56Z;<private thread link removed>
+n8n automatizácie;Pripravil som zadanie pre strážcu chýb, ktorý pošle e‑mail pri zlyhaní automatizácie.;pracujem;2026-10-26T10:57Z;<private thread link removed>
+n8n automatizácie;Automatizácia Inventúra je publikovaná a posiela zoznam na objednanie denne o 10:00.;hotové;2026-10-26T11:05Z;<private thread link removed>
+n8n automatizácie;Strážca chýb je publikovaný a priradený k obom automatizáciám.;hotové;2026-10-26T11:05Z;<private thread link removed>
+n8n automatizácie;Zhrnul som celú prácu na n8n automatizáciách do súboru zhrnutie-n8n.md.;hotové;2026-10-26T11:07Z;<private thread link removed>
+n8n automatizácie;Navrhol som marketingového agenta (formulár → Claude → návrh na schválenie) a založil tabuľku a priečinok.;pracujem;2026-10-26T11:28Z;<private thread link removed>
+n8n automatizácie;Marketingového agenta testujeme zadarmo s Google Gemini, Peter si zakladá kľúč.;pracujem;2026-10-26T11:32Z;<private thread link removed>
+n8n automatizácie;Peter má Gemini kľúč, poslal som zadanie pre workflow Marketingový agent.;pracujem;2026-10-26T11:34Z;<private thread link removed>
+n8n automatizácie;Test marketingového agenta spadol pri zmenšovaní fotky (málo pamäte v n8n), posielam opravu.;chyba;2026-10-26T11:51Z;<private thread link removed>
+n8n automatizácie;Pripravil som dokument Podklady pre portál (obrazovky, webhooky, tabuľky, ďalšie kroky).;hotové;2026-10-26T12:06Z;<private thread link removed>
+n8n automatizácie;Doplnil som do Podkladov pre portál webhooky pre Plánovanie smien (súbor, event, choroba).;hotové;2026-10-26T12:09Z;<private thread link removed>

@@ -1,0 +1,1211 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Bar Demo Linz</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: celá obrazovka je 3D bar. Navrchu značka a hodiny, vľavo lišta (šéf, úlohy, denník),
+   vpravo (na mobile zdola) panel s funkciami. Vedome jeden tmavý vzhľad ako herné UI. */
+:root{
+  --ink:#f1ebdf; --ink-2:#bdb4a4; --ink-3:#8a8273;
+  --card:#100f0e; --card-2:#1a1815; --card-3:#25221d; --line:#3a3226;
+  --go:#c9a45c; --go-ink:#17130b; --live:#4fd1a1; --warn:#e2b764; --bad:#e8705f; --info:#8ec5f0;
+  --f-serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --f-display:"Bricolage Grotesque","Avenir Next",system-ui,sans-serif;
+  --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --gutter-l:max(16px,env(safe-area-inset-left,0px)); --gutter-r:max(16px,env(safe-area-inset-right,0px));
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;overflow:hidden;background:#0b0a0d;color:var(--ink);font:15px/1.45 var(--f-body)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--go);outline-offset:2px}
+h1,h2,h3{font-family:var(--f-display);margin:0;letter-spacing:-.01em;text-wrap:balance}
+p{margin:0}
+
+#app{position:fixed;inset:0;background:var(--sky,linear-gradient(180deg,#0c0a10,#1a1418));transition:background 2s}
+#stage{position:absolute;inset:0;touch-action:none;user-select:none;-webkit-user-select:none;overflow:hidden}
+#stage canvas{display:block;width:100%;height:100%;cursor:grab}
+#stage canvas:active{cursor:grabbing}
+
+/* horná lišta */
+.hud{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));left:var(--gutter-l);right:var(--gutter-r);display:flex;justify-content:space-between;gap:10px;align-items:flex-start;pointer-events:none;z-index:4}
+.brand{pointer-events:auto;background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:14px;padding:8px 12px;display:grid;gap:2px}
+.brand h1{font:700 24px/1 var(--f-serif);letter-spacing:.01em;color:var(--go)}
+.brand span{font:500 10px var(--f-mono);color:var(--ink-3);letter-spacing:.12em;text-transform:uppercase}
+.clock{pointer-events:auto;background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:14px;padding:8px 12px;text-align:right;font:500 12px var(--f-mono);color:var(--ink-2)}
+.clock b{display:block;font:700 22px/1.1 var(--f-serif);color:var(--ink)}
+
+/* ľavá lišta */
+.rail{position:absolute;left:var(--gutter-l);top:50%;transform:translateY(-50%);display:grid;gap:8px;background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:16px;padding:8px;z-index:4}
+.rail button{width:48px;height:48px;border-radius:12px;border:0;background:transparent;color:var(--ink-2);display:grid;place-items:center;position:relative}
+.rail button:hover,.rail button[aria-pressed="true"]{background:var(--card-3);color:var(--go)}
+.rail svg{width:22px;height:22px}
+.rail .n{position:absolute;top:4px;right:4px;min-width:17px;height:17px;border-radius:9px;background:var(--go);color:var(--go-ink);font:700 10px/17px var(--f-mono);padding:0 4px}
+.rail .lbl{position:absolute;left:58px;white-space:nowrap;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:3px 8px;font-size:12px;opacity:0;pointer-events:none;transition:opacity .15s}
+.rail button:hover .lbl{opacity:1}
+@media (max-width:640px){
+  .rail{top:auto;bottom:calc(12px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);grid-auto-flow:column}
+  .rail .lbl{display:none}
+}
+
+/* menovky a karty nad postavami */
+.tag{position:absolute;left:0;top:0;transform:translate(-50%,-100%);display:flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--card) 92%,transparent);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:3px 9px 3px 7px;font:600 12px var(--f-body);white-space:nowrap;cursor:pointer;z-index:2}
+.tag i{width:8px;height:8px;border-radius:50%;background:var(--ink-3);flex:none}
+.tag i.working{background:var(--live);animation:ping 1.6s infinite}
+.tag i.error{background:var(--bad);animation:ping 1s infinite}
+.tag i.done{background:var(--info)}
+.tag em{font-style:normal;font:700 10px var(--f-mono);background:var(--go);color:var(--go-ink);border-radius:6px;padding:0 5px}
+@keyframes ping{0%{box-shadow:0 0 0 0 color-mix(in srgb,currentColor 0%,var(--live))}100%{box-shadow:0 0 0 7px transparent}}
+.pop{position:absolute;left:0;top:0;width:min(310px,calc(100% - 32px));background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;display:grid;gap:10px;box-shadow:0 14px 34px rgba(0,0,0,.45);z-index:3}
+.pop .top2{display:flex;gap:10px;align-items:flex-start}
+.face{width:42px;height:42px;border-radius:11px;background:#0c100f;display:grid;place-items:center;flex:none;border:1px solid var(--line)}
+.face b{display:block;width:22px;height:8px;background:radial-gradient(circle at 4px 4px,var(--c,#5ff2d0) 3.5px,transparent 4px),radial-gradient(circle at 18px 4px,var(--c,#5ff2d0) 3.5px,transparent 4px)}
+.pop .t{font:700 20px/1.1 var(--f-serif);min-width:0;overflow-wrap:anywhere}
+.sub{display:flex;gap:8px;align-items:center;font:500 12px var(--f-mono);color:var(--ink-3);margin-top:4px;flex-wrap:wrap}
+.st{display:inline-flex;align-items:center;gap:5px;background:var(--card-3);border-radius:6px;padding:1px 7px;color:var(--ink)}
+.st::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--c,#8a948e)}
+.x{margin-left:auto;background:var(--card-3);border:0;width:30px;height:30px;border-radius:50%;flex:none;color:var(--ink)}
+.prog{height:5px;background:var(--card-3);border-radius:3px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--c,#8a948e)}
+.prog i.run{animation:run 2.4s ease-in-out infinite alternate}
+@keyframes run{from{width:30%}to{width:85%}}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.acts button{border-radius:10px;padding:10px;font-weight:700;border:1px solid var(--line);background:var(--card-2)}
+.acts button.go{background:var(--go);border-color:var(--go);color:var(--go-ink)}
+.what{font-size:14px;color:var(--ink-2)}
+
+/* panel s funkciami */
+.sheet{position:absolute;z-index:5;top:calc(84px + env(safe-area-inset-top,0px));right:var(--gutter-r);bottom:calc(16px + env(safe-area-inset-bottom,0px));width:min(420px,calc(100% - 32px));background:color-mix(in srgb,var(--card) 96%,transparent);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:18px;display:grid;grid-template-rows:auto 1fr;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.5)}
+.sheet-head{display:flex;align-items:center;gap:10px;padding:14px 14px 10px;border-bottom:1px solid var(--line)}
+.sheet-head h2{font:700 24px/1.1 var(--f-serif);min-width:0}
+.sheet-body{overflow-y:auto;padding:14px;display:grid;gap:14px;align-content:start;min-width:0}
+@media (max-width:640px){
+  .sheet{top:auto;left:0;right:0;bottom:0;width:auto;max-height:78%;border-radius:18px 18px 0 0;padding-bottom:env(safe-area-inset-bottom,0px)}
+  .sheet-head{padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+  .sheet-body{padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+}
+.note{font-size:13px;color:var(--ink-3)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:transparent;border-radius:999px;padding:6px 12px;font-size:14px;color:var(--ink-2)}
+.tab[aria-selected="true"]{background:var(--go);color:var(--go-ink);border-color:var(--go)}
+form{display:grid;gap:12px}
+label{display:grid;gap:4px;font-size:13px;font-weight:600;color:var(--ink-2)}
+input,select,textarea{background:var(--card-2);border:1px solid var(--line);border-radius:10px;padding:10px;width:100%;min-width:0}
+textarea{resize:vertical;min-height:80px}
+.btn{border:1px solid var(--line);background:var(--card-2);border-radius:999px;padding:9px 15px;font-weight:700}
+.btn.primary{background:var(--go);border-color:var(--go);color:var(--go-ink)}
+.btn.small{padding:6px 12px;font-size:13px}
+.btn:disabled{opacity:.55;cursor:default}
+.chip{border:1px dashed var(--line);background:transparent;border-radius:999px;padding:6px 11px;font-size:13px;color:var(--ink-2);text-align:left}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:2px 9px;font:500 12px/1.6 var(--f-mono);white-space:nowrap;background:var(--card-3)}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.s-pracujem,.s-nova{color:var(--info)}
+.s-hotove,.s-schvalene{color:var(--live)}
+.s-chyba{color:var(--bad)}
+.s-na-schvalenie,.s-prepisat{color:var(--warn)}
+.list{display:grid;gap:8px}
+.item{border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:6px;background:var(--card-2);min-width:0}
+.item .head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.item .title{font-weight:600;min-width:0;overflow-wrap:anywhere}
+.item img,.item video{max-width:100%;max-height:200px;border-radius:8px}
+.kv{display:grid;grid-template-columns:max-content 1fr;gap:4px 12px;font-size:14px;margin:0}
+.kv dt{color:var(--ink-3)} .kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.meter{display:grid;gap:4px;font-size:13px}
+.bar{height:8px;border-radius:4px;background:var(--card-3);overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--warn)}
+.empty{border:1px dashed var(--line);border-radius:12px;padding:16px;color:var(--ink-3);font-size:14px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.answer{background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:10px}
+a{color:var(--info)}
+.toast{position:absolute;z-index:9;left:50%;transform:translateX(-50%);top:calc(84px + env(safe-area-inset-top,0px));background:var(--go);color:var(--go-ink);padding:10px 16px;border-radius:999px;font-weight:700;max-width:calc(100% - 32px)}
+.loading{position:absolute;inset:0;display:grid;place-items:center;font:600 italic 26px var(--f-serif);color:var(--go);z-index:8;pointer-events:none}
+.fallback{position:absolute;inset:auto 16px 50% 16px;text-align:center;color:var(--ink)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div id="app">
+  <div id="stage" aria-label="3D bar: the head bartender and the waiters at work"></div>
+  <div class="loading" id="loading">Opening the bar…</div>
+
+  <header class="hud">
+    <div class="brand">
+      <h1 id="biz-name">Bar Demo Linz</h1>
+      <span>Fictional venue · sample data</span>
+    </div>
+    <div class="clock"><b id="clock">--:--</b><span id="open-state">Linz</span></div>
+  </header>
+
+  <nav class="rail" aria-label="Bar menu">
+    <button type="button" data-sheet="boss" aria-pressed="false" aria-label="Head bartender">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-7 8v5l3 2H8l3-2v-5z"/><path d="M8 9h8"/></svg>
+      <span class="lbl">Head bartender</span>
+    </button>
+    <button type="button" data-sheet="queue" aria-pressed="false" aria-label="Tasks">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>
+      <span class="n" id="q-badge" hidden>0</span>
+      <span class="lbl">Tasks for the waiters</span>
+    </button>
+    <button type="button" data-sheet="log" aria-pressed="false" aria-label="Agent log">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h10l3 3v15H6z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg>
+      <span class="lbl">Agent log</span>
+    </button>
+    <button type="button" id="recenter" aria-label="Show the whole bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+      <span class="lbl">Whole bar</span>
+    </button>
+  </nav>
+
+  <aside class="sheet" id="sheet" hidden aria-labelledby="sheet-title">
+    <div class="sheet-head">
+      <div class="face" id="sheet-face"><b></b></div>
+      <h2 id="sheet-title"></h2>
+      <button class="x" type="button" id="sheet-close" aria-label="Close">✕</button>
+    </div>
+    <div class="sheet-body" id="sheet-body"></div>
+  </aside>
+  <div class="toast" id="toast" hidden role="status"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// =====================================================================
+// POMOCNÍCI
+// =====================================================================
+const $ = (s) => document.querySelector(s);
+// h(): bezpečne vytvorí HTML prvok; text sa nikdy nevkladá ako kód
+function h(tag, attrs, ...kids) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (v == null || v === false) continue;
+    if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
+    else if (k === "class") el.className = v;
+    else el.setAttribute(k, v === true ? "" : v);
+  }
+  for (const kid of kids.flat()) if (kid != null && kid !== false) el.append(kid.nodeType ? kid : String(kid));
+  return el;
+}
+const slug = (s) => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\s+/g, "-");
+// stavy sa v databáze ukladajú po slovensky, na obrazovke sú po anglicky
+const STAV_EN = { "nová": "new", "pracujem": "in progress", "hotové": "done", "chyba": "error", "na schválenie": "awaiting approval", "schválené": "approved", "prepísať": "rewrite" };
+const pill = (stav) => h("span", { class: "pill s-" + slug(stav) }, STAV_EN[stav] || stav || "–");
+function fmtTime(iso) {
+  const d = new Date(iso); if (isNaN(d)) return iso || "";
+  return d.toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+}
+function ago(iso) {
+  const d = new Date(iso); if (!iso || isNaN(d)) return "";
+  const m = Math.round((Date.now() - d) / 60000);
+  if (m < 2) return "just now"; if (m < 60) return `${m} min ago`;
+  if (m < 60 * 24) return `${Math.round(m / 60)} h ago`; return fmtTime(iso);
+}
+function today(offset = 0) { const d = new Date(); d.setDate(d.getDate() + offset); return d.toISOString().slice(0, 10); }
+function skDate(iso) { if (!iso) return ""; const [y, m, d] = iso.split("-"); return `${d}.${m}.${y}`; }
+let toastTimer;
+function toast(msg) {
+  const t = $("#toast"); t.textContent = msg; t.hidden = false;
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => (t.hidden = true), 3200);
+}
+
+// =====================================================================
+// ČAŠNÍCI A ICH FUNKCIE
+// =====================================================================
+const STAFF = ["Lena", "Tobias", "Jonas", "Mira", "Emil", "Sara", "Felix", "Nina"]; // vymyslení zamestnanci
+const STOCK = ["Lemons", "Limes", "Aperol", "Prosecco", "Tonic", "Milk", "Coffee beans", "Beer (keg)"];
+const BOTS = [
+  { id: "n8n", name: "n8n Automations", zone: "Automation desk", accent: 0x3fc8a0, css: "#3fc8a0", status: "Shift checklist at 3 pm, stock alert at 10 am, error watch.",
+    actions: [{ id: "uloha", label: "Shift tasks" }, { id: "inventura", label: "Stock count" }, { id: "chyby", label: "Error watch" }] },
+  { id: "smeny", name: "Shift Planner", zone: "Rota board", accent: 0xe2b764, css: "#e2b764", status: "Rota for 2 – 8 Nov is waiting for approval.",
+    actions: [{ id: "choroba", label: "Report sick leave" }, { id: "event", label: "Add an event" }, { id: "subor", label: "Upload a file" }] },
+  { id: "marketing", name: "Marketing", zone: "Photo corner", accent: 0xe07a52, css: "#e07a52", status: "Turns a photo or video into a post for approval.",
+    actions: [{ id: "prispevok", label: "New post" }, { id: "schvalenie", label: "Awaiting approval" }] },
+  { id: "analytik", name: "Data Analyst", zone: "Office", accent: 0x8ec5f0, css: "#8ec5f0", status: "Sales reports. On hold for now.",
+    actions: [{ id: "report", label: "Request a report" }] },
+  { id: "pr", name: "PR", zone: "Stage", accent: 0xb98ae0, css: "#b98ae0", status: "Press releases and media relations.",
+    actions: [{ id: "pr", label: "New request" }] },
+];
+const botById = (id) => BOTS.find((b) => b.id === id);
+const STATE_UI = { working: ["Working", "#4fd1a1"], error: ["Error", "#e8705f"], done: ["Done", "#8ec5f0"], idle: ["Idle", "#8a8273"] };
+const CLOSED = ["hotové", "schválené"];
+
+// =====================================================================
+// STAV STRÁNKY (plní sa z databázy portálu)
+// =====================================================================
+let db = null, assets = null, sample = null;
+let tasks = [], botDocs = {}, logRows = [];
+let logFilter = "All";
+let sheet = null; // { kind: "boss" | "bot" | "queue" | "log", bot, action }
+let sceneRefresh = () => {}, focusActor = () => {};
+
+// stav čašníka: otvorené úlohy z fronty, inak posledný riadok denníka
+const AGENT_KEY = { n8n: "n8n", smeny: "smien", marketing: "marketing", analytik: "analytik", pr: "pr" };
+function botStatus(botId) {
+  const key = AGENT_KEY[botId];
+  const log = logRows.find((r) => { const a = slug(r.agent); return botId === "pr" ? a === "pr" : a.includes(key); });
+  const open = tasks.filter((t) => t.bot === botId && !CLOSED.includes(t.stav));
+  const err = open.find((t) => t.stav === "chyba");
+  const working = open.find((t) => t.stav === "pracujem") || open[0];
+  let state = "idle", title, when;
+  if (err) { state = "error"; title = err.nazov; when = err.zmenene || err.vytvorene; }
+  else if (working) { state = "working"; title = working.nazov; when = working.zmenene || working.vytvorene; }
+  else if (log) { state = log.stav === "chyba" ? "error" : log.stav === "pracujem" ? "working" : "done"; title = log.co; when = log.cas; }
+  return { state, title: title || botById(botId).status, when, open: open.length, log };
+}
+
+// =====================================================================
+// PANEL (šéf, funkcie čašníka, úlohy, denník)
+// =====================================================================
+function openSheet(next) {
+  sheet = next;
+  document.querySelectorAll(".rail [data-sheet]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.sheet === next.kind)));
+  renderSheet(next.prefill);
+  $("#sheet").hidden = false;
+  if (next.kind === "bot") focusActor(next.bot);
+  if (next.kind === "boss") focusActor("boss");
+}
+function closeSheet() {
+  sheet = null; $("#sheet").hidden = true;
+  document.querySelectorAll(".rail [data-sheet]").forEach((b) => b.setAttribute("aria-pressed", "false"));
+}
+// obnoví panel po zmene dát, ale nikdy nezmaže rozpísaný formulár
+function sheetLive() {
+  if (!sheet) return;
+  if (sheet.kind === "queue" || sheet.kind === "log") renderSheet();
+  if (sheet.kind === "bot" && ["schvalenie", "chyby"].includes(sheet.action)) renderSheet();
+}
+function renderSheet(prefill) {
+  const body = $("#sheet-body"), face = $("#sheet-face");
+  if (sheet.kind === "boss") {
+    $("#sheet-title").textContent = "Head bartender"; face.style.setProperty("--c", "#f2b84b");
+    body.replaceChildren(...bossView());
+  } else if (sheet.kind === "bot") {
+    const b = botById(sheet.bot);
+    $("#sheet-title").textContent = b.name; face.style.setProperty("--c", b.css);
+    const st = botStatus(b.id), [label, color] = STATE_UI[st.state];
+    body.replaceChildren(
+      h("div", { class: "sub" }, h("span", { class: "st", style: `--c:${color}` }, label), h("span", {}, b.zone), st.open ? h("span", {}, `${st.open} open`) : null),
+      h("div", { class: "tabs", role: "tablist" }, b.actions.map((a) =>
+        h("button", { class: "tab", type: "button", role: "tab", "aria-selected": String(a.id === sheet.action),
+          onclick: () => { sheet.action = a.id; renderSheet(); } }, a.label))),
+      actionView(b.id, sheet.action, prefill || {}));
+  } else if (sheet.kind === "queue") {
+    $("#sheet-title").textContent = "Tasks for the waiters"; face.style.setProperty("--c", "#7cc4ff");
+    body.replaceChildren(...queueView());
+  } else if (sheet.kind === "log") {
+    $("#sheet-title").textContent = "Agent log"; face.style.setProperty("--c", "#3ddc97");
+    body.replaceChildren(...logView());
+  }
+}
+$("#sheet-close").addEventListener("click", closeSheet);
+document.querySelectorAll(".rail [data-sheet]").forEach((b) => b.addEventListener("click", () => {
+  if (sheet?.kind === b.dataset.sheet) return closeSheet();
+  openSheet({ kind: b.dataset.sheet });
+}));
+addEventListener("keydown", (e) => { if (e.key === "Escape") closeSheet(); });
+
+// ---------- formuláre funkcií ----------
+function field(label, input) { return h("label", {}, label, input); }
+function actionView(bot, action, p) {
+  const key = bot + "/" + action;
+  if (key === "n8n/uloha") {
+    const f = h("form", {},
+      h("p", { class: "note" }, "The task joins the list that n8n emails to the shift every day at 3 pm."),
+      field("Task", h("input", { id: "u-uloha", required: true, placeholder: "Clean the beer taps", value: p.uloha || "" })),
+      h("div", { class: "grid2" },
+        field("Date", h("input", { id: "u-datum", type: "date", value: p.datum || today(1) })),
+        field("Repeat", h("select", { id: "u-kazdy" }, h("option", { value: "" }, "only on this day"), h("option", { value: "1", selected: p.kazdy_den }, "every day"))),
+        field("Who", h("select", { id: "u-kto" }, [["Barman", "Bartender"], ["Vedúci", "Shift lead"], ["Obsluha", "Floor staff"], ["Všetci", "Everyone"]].map(([v, k]) => h("option", { value: v, selected: p.kto === v || p.kto === k }, k))))),
+      h("div", { class: "row" }, h("button", { class: "btn primary" }, "Add task")));
+    f.onsubmit = (e) => { e.preventDefault();
+      const kazdy = $("#u-kazdy").value === "1";
+      const d = { datum: kazdy ? "každý deň" : skDate($("#u-datum").value), uloha: $("#u-uloha").value.trim(), kto: $("#u-kto").value };
+      createTask("n8n", "uloha", `Shift task: ${d.uloha} (${kazdy ? "every day" : d.datum}, ${$("#u-kto").selectedOptions[0].textContent})`, d, f); };
+    return f;
+  }
+  if (key === "n8n/inventura") {
+    const f = h("form", {},
+      h("p", { class: "note" }, "After the shift, enter what is in stock. n8n emails anything below minimum at 10 am."),
+      h("div", { class: "grid2" }, STOCK.map((s, i) => field(s, h("input", { type: "number", min: "0", step: "1", inputmode: "numeric", id: "inv-" + i, placeholder: "qty" })))),
+      h("div", { class: "row" }, h("button", { class: "btn primary" }, "Save stock count")));
+    f.onsubmit = (e) => { e.preventDefault();
+      const polozky = STOCK.map((s, i) => ({ polozka: s, na_sklade: $("#inv-" + i).value })).filter((x) => x.na_sklade !== "").map((x) => ({ ...x, na_sklade: Number(x.na_sklade) }));
+      if (!polozky.length) return toast("Fill in at least one item.");
+      createTask("n8n", "inventura", `Stock count: ${polozky.length} items`, { polozky }, f); };
+    return f;
+  }
+  if (key === "n8n/chyby") {
+    const wf = botDocs.n8n?.workflows || [];
+    if (!wf.length) return h("div", { class: "empty" }, "The automation list appears once the n8n agent writes it.");
+    return h("div", { class: "list" },
+      h("p", { class: "note" }, "Status of the n8n automations. When one fails, the error watch sends an email and the agent updates it here."),
+      wf.map((w) => h("div", { class: "item" },
+        h("div", { class: "head" }, h("span", { class: "title" }, w.nazov), pill(w.stav)),
+        h("span", { class: "note" }, `${w.kedy} · ${w.pozn}`))));
+  }
+  if (key === "smeny/choroba") {
+    const f = h("form", {},
+      h("p", { class: "note" }, "The agent finds a cover that fits contracts and rest rules, then sends it to you for approval."),
+      h("div", { class: "grid2" },
+        field("Name", h("select", { id: "c-meno" }, STAFF.map((m) => h("option", { selected: p.meno === m }, m)))),
+        field("From", h("input", { id: "c-od", type: "date", required: true, value: p.od || today() })),
+        field("To", h("input", { id: "c-do", type: "date", required: true, value: p.do || p.od || today() }))),
+      h("div", { class: "row" }, h("button", { class: "btn primary" }, "Report sick leave")));
+    f.onsubmit = (e) => { e.preventDefault();
+      const d = { meno: $("#c-meno").value, od: skDate($("#c-od").value), do: skDate($("#c-do").value) };
+      createTask("smeny", "choroba", `Sick leave: ${d.meno} ${d.od}${d.do !== d.od ? " – " + d.do : ""}`, d, f); };
+    return f;
+  }
+  if (key === "smeny/event") {
+    const f = h("form", {},
+      h("p", { class: "note" }, "The agent adds extra staff by the rules: one extra from 40 guests, an event adds an evening shift plus one extra."),
+      field("Name", h("input", { id: "e-nazov", required: true, placeholder: "Company party", value: p.nazov || "" })),
+      h("div", { class: "grid2" },
+        field("Date", h("input", { id: "e-datum", type: "date", required: true, value: p.datum || today(7) })),
+        field("Guests", h("input", { id: "e-hostia", type: "number", min: "1", value: p.pocet_hosti || 30 })),
+        field("From", h("input", { id: "e-od", type: "time", value: p.cas_od || "19:00" })),
+        field("To", h("input", { id: "e-do", type: "time", value: p.cas_do || "23:00" }))),
+      h("div", { class: "row" }, h("button", { class: "btn primary" }, "Add event")));
+    f.onsubmit = (e) => { e.preventDefault();
+      const d = { datum: skDate($("#e-datum").value), cas_od: $("#e-od").value, cas_do: $("#e-do").value, nazov: $("#e-nazov").value.trim(), pocet_hosti: Number($("#e-hostia").value) };
+      createTask("smeny", "event", `Event: ${d.nazov} ${d.datum}, ${d.pocet_hosti} guests`, d, f); };
+    return f;
+  }
+  if (key === "smeny/subor") {
+    const f = h("form", {},
+      h("p", { class: "note" }, "Upload a CSV with bookings, shift wishes or contracts. Save Excel files as CSV first (File → Save as → CSV)."),
+      field("What is in the file", h("select", { id: "f-druh" }, h("option", { value: "rezervacie" }, "bookings"), h("option", { value: "zelania" }, "shift wishes"), h("option", { value: "zmluvy" }, "contracts"))),
+      field("CSV file", h("input", { id: "f-subor", type: "file", accept: ".csv,text/csv", required: true })),
+      h("div", { class: "row" }, h("button", { class: "btn primary" }, "Upload file")));
+    f.onsubmit = async (e) => { e.preventDefault();
+      const file = $("#f-subor").files[0]; if (!file) return;
+      const sub = await uploadFile(file, "text/csv"); if (!sub) return;
+      createTask("smeny", "subor", `File: ${$("#f-druh").selectedOptions[0].textContent} (${file.name})`, { druh: $("#f-druh").value }, f, sub); };
+    return f;
+  }
+  if (key === "marketing/prispevok") {
+    const used = monthUsage();
+    const f = h("form", {},
+      h("p", { class: "note" }, "Upload a photo or video and add a few words. The agent writes the Instagram and Google post and sends it for approval."),
+      h("div", { class: "grid2" }, meter("Photos this month", used.foto, 20), meter("Videos this month", used.video, 5)),
+      field("Photo or video", h("input", { id: "m-subor", type: "file", accept: "image/*,video/*", required: true })),
+      field("A few words", h("textarea", { id: "m-pozn", placeholder: "new cocktail, Friday" }, p.poznamka || "")),
+      h("div", { class: "row" }, h("button", { class: "btn primary" }, "Send to Marketing")));
+    f.onsubmit = async (e) => { e.preventDefault();
+      const file = $("#m-subor").files[0]; if (!file) return;
+      const typ = file.type.startsWith("video") ? "video" : "foto";
+      if ((typ === "foto" && used.foto >= 20) || (typ === "video" && used.video >= 5)) return toast("This month's limit is used up.");
+      const sub = await uploadFile(file); if (!sub) return;
+      createTask("marketing", "prispevok", `Post (${typ === "foto" ? "photo" : "video"}): ${$("#m-pozn").value.trim() || "no note"}`,
+        { zakaznik: "Bar Demo Linz", typ, poznamka: $("#m-pozn").value.trim() }, f, sub); };
+    return f;
+  }
+  if (key === "marketing/schvalenie") {
+    const list = tasks.filter((t) => t.bot === "marketing" && t.akcia === "prispevok");
+    if (!list.length) return h("div", { class: "empty" }, "No posts yet. Upload a photo under New post.");
+    return h("div", { class: "list" }, list.map(postCard));
+  }
+  if (key === "analytik/report") {
+    const f = h("form", {},
+      h("p", { class: "note" }, "The Data Analyst is on hold for now. Your request waits in the queue until it starts."),
+      field("Report", h("select", { id: "r-typ" }, ["Sales last week", "Best-selling drinks", "Sales by hour"].map((x) => h("option", {}, x)))),
+      h("div", { class: "row" }, h("button", { class: "btn primary" }, "Request report")));
+    f.onsubmit = (e) => { e.preventDefault(); createTask("analytik", "report", $("#r-typ").value, { typ: $("#r-typ").value }, f); };
+    return f;
+  }
+  if (key === "pr/pr") {
+    const f = h("form", {},
+      field("Topic", h("input", { id: "p-tema", required: true, placeholder: "Our winter terrace opens", value: p.tema || "" })),
+      field("Notes", h("textarea", { id: "p-pozn", placeholder: "Audience, deadline, key points" }, p.poznamka || "")),
+      h("div", { class: "row" }, h("button", { class: "btn primary" }, "Send to PR")));
+    f.onsubmit = (e) => { e.preventDefault();
+      createTask("pr", "pr", `PR: ${$("#p-tema").value.trim()}`, { tema: $("#p-tema").value.trim(), poznamka: $("#p-pozn").value.trim() }, f); };
+    return f;
+  }
+  return h("p", { class: "note" }, "Coming soon.");
+}
+function meter(label, used, max) {
+  return h("div", { class: "meter" },
+    h("div", { class: "row", style: "justify-content:space-between" }, h("span", {}, label), h("span", { class: "mono" }, `${used} / ${max}`)),
+    h("div", { class: "bar" }, h("i", { style: `width:${Math.min(100, (used / max) * 100)}%` })));
+}
+function monthUsage() {
+  const ym = new Date().toISOString().slice(0, 7);
+  const m = tasks.filter((t) => t.bot === "marketing" && t.akcia === "prispevok" && String(t.vytvorene || "").startsWith(ym));
+  return { foto: m.filter((t) => t.data?.typ === "foto").length, video: m.filter((t) => t.data?.typ === "video").length };
+}
+// karta príspevku na schválenie; text dopĺňa agent Marketing do poľa "navrh"
+function postCard(t) {
+  const n = t.navrh || {};
+  const media = t.subor ? (String(t.subor.typ).startsWith("video") ? h("video", { src: "/_blob/" + t.subor.id, controls: true, muted: true }) : h("img", { src: "/_blob/" + t.subor.id, alt: "Uploaded image" })) : null;
+  const note = h("input", { placeholder: "What to change (e.g. fewer emoji)", "aria-label": "Rewrite note" });
+  return h("div", { class: "item" },
+    h("div", { class: "head" }, h("span", { class: "title" }, t.nazov), pill(t.stav)),
+    media,
+    n.instagram_text ? h("dl", { class: "kv" },
+      h("dt", {}, "Instagram"), h("dd", {}, n.instagram_text),
+      h("dt", {}, "Hashtags"), h("dd", {}, [].concat(n.hashtagy || []).join(" ")),
+      h("dt", {}, "Google"), h("dd", {}, n.google_text || ""),
+      h("dt", {}, "Translation"), h("dd", {}, n.preklad_sk || ""),
+      n.poznamka_pre_majitela ? [h("dt", {}, "For the owner"), h("dd", {}, n.poznamka_pre_majitela)] : null)
+      : h("p", { class: "note" }, "Marketing has not written the text yet."),
+    n.instagram_text && t.stav !== "schválené" ? h("div", { class: "row" },
+      h("button", { class: "btn small primary", type: "button", onclick: () => setStav(t, "schválené") }, "Approve"),
+      note,
+      h("button", { class: "btn small", type: "button", onclick: () => setStav(t, "prepísať", note.value.trim()) }, "Rewrite")) : null);
+}
+
+// ---------- úlohy a denník ----------
+function queueView() {
+  const open = tasks.filter((t) => !CLOSED.includes(t.stav));
+  if (!tasks.length) return [h("div", { class: "empty" }, db ? "No tasks yet. Tap a waiter or message the head bartender." : "Tasks appear once you are signed in to claude.ai.")];
+  return [h("p", { class: "note" }, `${open.length} open · ${tasks.length} total`),
+    h("div", { class: "list" }, tasks.slice(0, 60).map((t) => h("div", { class: "item" },
+      h("div", { class: "head" }, h("span", { class: "title" }, t.nazov), pill(t.stav)),
+      h("span", { class: "note" }, `${botById(t.bot)?.name || t.bot} · ${fmtTime(t.vytvorene)}${t.odpoved ? " · " + t.odpoved : ""}`),
+      !CLOSED.includes(t.stav) ? h("div", { class: "row" }, h("button", { class: "btn small", type: "button", onclick: () => setStav(t, "hotové") }, "Mark done")) : null)))];
+}
+function logView() {
+  const agents = ["All", ...new Set(logRows.map((r) => r.agent).filter(Boolean))];
+  const rows = logRows.filter((r) => logFilter === "All" || r.agent === logFilter);
+  return [
+    h("p", { class: "note" }, "Every agent writes here: what it did, status, time and a link to its thread."),
+    h("div", { class: "tabs" }, agents.map((a) => h("button", { class: "tab", type: "button", "aria-selected": String(a === logFilter), onclick: () => { logFilter = a; renderSheet(); } }, a))),
+    rows.length ? h("div", { class: "list" }, rows.slice(0, 120).map((r) => h("div", { class: "item" },
+      h("div", { class: "head" }, h("span", { class: "title" }, r.co), pill(r.stav)),
+      h("span", { class: "note" }, `${r.agent} · ${fmtTime(r.cas)} · `, r.odkaz ? h("a", { href: r.odkaz, target: "_blank", rel: "noopener" }, "thread") : "no link"))))
+      : h("div", { class: "empty" }, db ? "The log is empty." : "The log appears once you are signed in to claude.ai.")];
+}
+
+// ---------- zápis do databázy ----------
+async function uploadFile(file, type) {
+  if (!assets) { toast("File upload is not available."); return null; }
+  if (file.size > 20 * 1024 * 1024) { toast("The file is larger than 20 MB."); return null; }
+  try {
+    toast("Uploading…");
+    const r = await assets.upload(file, type ? { type } : undefined);
+    return { id: r.id, meno: file.name, typ: r.contentType, velkost: r.sizeBytes };
+  } catch (e) { toast("Upload failed (" + (e.code || "error") + ")."); return null; }
+}
+async function createTask(bot, akcia, nazov, data, form, subor) {
+  if (!db) return toast("Saving is not available. Open the portal while signed in to claude.ai.");
+  const btn = form?.querySelector("button.primary"); if (btn) btn.disabled = true;
+  try {
+    await db.collection("ulohy").add({ bot, akcia, nazov, data, subor: subor || null, stav: "nová", vytvorene: new Date().toISOString() });
+    toast(`Sent to ${botById(bot).name}`);
+    form?.reset();
+  } catch (e) { toast(e.code === "invalid_argument" ? "You do not have permission to save." : "Could not save, please try again."); }
+  finally { if (btn) btn.disabled = false; }
+}
+async function setStav(t, stav, poznamka) {
+  try {
+    await db.doc("ulohy/" + t.id).update({ stav, ...(poznamka ? { poznamka_majitela: poznamka } : {}), zmenene: new Date().toISOString() });
+    toast("Status: " + (STAV_EN[stav] || stav));
+  } catch { toast("Could not change the status."); }
+}
+
+// ---------- šéf barman (AI cez Claude) ----------
+let bossDraft = "", bossReply = null;
+const CHIPS = ["Jonas is sick on Friday 6 Nov", "Clean the beer taps tomorrow, bartender", "Company party on 13 Nov, 7–11 pm, 40 guests"];
+function bossView() {
+  const ta = h("textarea", { id: "boss-input", placeholder: "For example: Jonas is sick on Friday, find a cover." }, bossDraft);
+  ta.addEventListener("input", () => (bossDraft = ta.value));
+  return [
+    h("p", { class: "what" }, "Tell me what you need. I pick the right waiter and fill in the form for you."),
+    ta,
+    h("div", { class: "row" }, CHIPS.map((c) => h("button", { class: "chip", type: "button", onclick: () => { bossDraft = c; ta.value = c; askBoss(); } }, c))),
+    h("div", { class: "row" }, h("button", { class: "btn primary", id: "boss-send", type: "button", onclick: askBoss }, "Ask the head bartender"), h("span", { class: "note", id: "boss-state" })),
+    bossReply ? bossAnswer(bossReply) : null];
+}
+const BOSS_PROMPT = () => `You are the head bartender of Bar Demo Linz (a fictional bar in Linz). You hand out work to the waiters.
+The user may write in English or Slovak. Field values stay as listed below.
+Waiters (id) and their actions (with fields):
+- n8n / uloha: {"datum":"YYYY-MM-DD","kazdy_den":true|false,"uloha":"text","kto":"Barman|Vedúci|Obsluha|Všetci"}
+- n8n / inventura: opens the stock count form, leave fields empty
+- smeny / choroba: {"meno":"one of: ${STAFF.join(", ")}","od":"YYYY-MM-DD","do":"YYYY-MM-DD"}
+- smeny / event: {"nazov":"text","datum":"YYYY-MM-DD","cas_od":"HH:MM","cas_do":"HH:MM","pocet_hosti":number}
+- smeny / subor: CSV upload, leave fields empty
+- marketing / prispevok: photo or video upload, field {"poznamka":"text"}
+- analytik / report: sales report, leave fields empty
+- pr / pr: {"tema":"text","poznamka":"text"}
+Today is ${today()}. Fill in the year from today.
+Reply with ONLY this JSON: {"odpoved":"1-2 sentences in English saying what you will arrange","bot":"id or null","akcia":"id or null","polia":{}}
+If no waiter fits, set bot to null and give advice in odpoved.
+Request: `;
+async function askBoss() {
+  const text = bossDraft.trim();
+  if (!text) return toast("Write what you need.");
+  if (!sample) { bossReply = { odpoved: "I cannot answer right now. Tap a waiter in the bar instead." }; return renderSheet(); }
+  const btn = $("#boss-send"), state = $("#boss-state");
+  if (btn) btn.disabled = true; if (state) state.textContent = "Thinking…";
+  try { bossReply = (await sample.json(BOSS_PROMPT() + text, { modelTier: "quick" })) || {}; }
+  catch (e) { bossReply = { odpoved: e.code === "not_granted" ? "Claude was not allowed on this page. Tap a waiter in the bar instead." : "No answer right now. Try again in a moment." }; }
+  if (sheet?.kind === "boss") renderSheet();
+}
+function bossAnswer(r) {
+  const b = botById(r.bot);
+  const card = h("div", { class: "answer" }, h("p", {}, r.odpoved || "Got it."));
+  if (b) {
+    const action = b.actions.find((a) => a.id === r.akcia) || b.actions[0];
+    const entries = Object.entries(r.polia || {}).filter(([, v]) => v !== "" && v != null);
+    if (entries.length) card.append(h("dl", { class: "kv" }, entries.map(([k, v]) => [h("dt", {}, k.replace(/_/g, " ")), h("dd", {}, typeof v === "boolean" ? (v ? "yes" : "no") : String(v))])));
+    card.append(h("div", { class: "row" },
+      h("span", { class: "note" }, `${b.name} → ${action.label}`),
+      h("button", { class: "btn primary small", type: "button", onclick: () => openSheet({ kind: "bot", bot: b.id, action: action.id, prefill: r.polia || {} }) }, "Review and send")));
+  }
+  return card;
+}
+
+// =====================================================================
+// 3D SVET
+// =====================================================================
+function initWorld() {
+  const stage = $("#stage");
+  if (!window.THREE) throw new Error("three.js did not load");
+  const T = THREE;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // --- vykresľovač ---
+  const renderer = new T.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(1.75, devicePixelRatio || 1));
+  renderer.outputEncoding = T.sRGBEncoding;
+  renderer.toneMapping = T.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = T.PCFSoftShadowMap;
+  stage.prepend(renderer.domElement);
+  const scene = new T.Scene();
+  const cam = new T.PerspectiveCamera(30, 1, 1, 400);
+  const world = new T.Group(); scene.add(world);
+
+  // --- materiály a pomocníci ---
+  const matCache = {};
+  const std = (c, o = {}) => { const k = c + JSON.stringify(o); return matCache[k] || (matCache[k] = new T.MeshStandardMaterial({ color: c, roughness: 0.6, metalness: 0.05, ...o })); };
+  const glossy = (c, o = {}) => new T.MeshPhysicalMaterial({ color: c, roughness: 0.32, metalness: 0.05, clearcoat: 0.7, clearcoatRoughness: 0.25, ...o });
+  const glow = (c, i = 1.4) => new T.MeshStandardMaterial({ color: c, emissive: c, emissiveIntensity: i, roughness: 0.4 });
+  function add(geo, mat, x = 0, y = 0, z = 0, parent = world, shadow = true) {
+    const m = new T.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = shadow; m.receiveShadow = true; parent.add(m); return m;
+  }
+  const grp = (parent = world, x = 0, y = 0, z = 0) => { const g = new T.Group(); g.position.set(x, y, z); parent.add(g); return g; };
+  function canvasTex(w, hh, draw) {
+    const c = document.createElement("canvas"); c.width = w; c.height = hh;
+    draw(c.getContext("2d"), w, hh);
+    const t = new T.CanvasTexture(c); t.encoding = T.sRGBEncoding; t.anisotropy = 4; return t;
+  }
+  const font = (px, w = 700) => `${w} ${px}px Figtree, system-ui, sans-serif`;
+
+  // drevená podlaha
+  const woodTex = canvasTex(512, 512, (g, w, hh) => {
+    const tones = ["#3b2416", "#341f12", "#43291a", "#2e1b10", "#3f2617"];
+    for (let y = 0; y < hh; y += 32) {
+      let x = -((y / 32) % 3) * 70;
+      while (x < w) {
+        const len = 140 + ((x * 7 + y) % 90);
+        g.fillStyle = tones[Math.abs((x + y * 3) / 17 | 0) % tones.length]; g.fillRect(x, y, len, 32);
+        g.strokeStyle = "rgba(10,5,2,.55)"; g.lineWidth = 2; g.strokeRect(x, y, len, 32);
+        g.strokeStyle = "rgba(255,210,150,.05)"; g.lineWidth = 1;
+        for (let k = 0; k < 3; k++) { g.beginPath(); g.moveTo(x + 4, y + 8 + k * 8); g.bezierCurveTo(x + len / 3, y + 6 + k * 8, x + len / 2, y + 12 + k * 8, x + len - 4, y + 8 + k * 8); g.stroke(); }
+        x += len;
+      }
+    }
+  });
+  woodTex.wrapS = woodTex.wrapT = T.RepeatWrapping; woodTex.repeat.set(1.4, 1.4);
+  // dlaždice pod barom
+  const tileTex = canvasTex(256, 256, (g, w) => {
+    for (let y = 0; y < 8; y++) for (let x = 0; x < 8; x++) { g.fillStyle = (x + y) % 2 ? "#121214" : "#2a2622"; g.fillRect(x * 32, y * 32, 32, 32); g.strokeStyle = "rgba(201,164,92,.35)"; g.strokeRect(x * 32 + .5, y * 32 + .5, 31, 31); }
+  });
+  tileTex.wrapS = tileTex.wrapT = T.RepeatWrapping; tileTex.repeat.set(2.5, 2.5);
+
+  // --- šesťuholníkový ostrov ---
+  const R = 3.5, TILE = 3.38;
+  const axial = (q, r) => new T.Vector3(R * 1.5 * q, 0, R * Math.sqrt(3) * (r + q / 2));
+  const hexShape = (r1, r2) => {
+    const s = new T.Shape();
+    for (let k = 0; k <= 6; k++) { const a = (k / 6) * Math.PI * 2; k ? s.lineTo(Math.cos(a) * r1, Math.sin(a) * r1) : s.moveTo(r1, 0); }
+    if (r2) { const p = new T.Path(); for (let k = 0; k <= 6; k++) { const a = -(k / 6) * Math.PI * 2; k ? p.lineTo(Math.cos(a) * r2, Math.sin(a) * r2) : p.moveTo(r2, 0); } s.holes.push(p); }
+    return s;
+  };
+  const rimGeo = new T.ExtrudeGeometry(hexShape(TILE, TILE - 0.2), { depth: 0.06, bevelEnabled: false });
+  const sideMat = std(0x1e130c, { roughness: 0.8 });
+  const stoneMat = std(0x0f0e12, { roughness: 0.95 });
+  function hexTile(pos, top, rimColor, rimGlow = 0.9) {
+    const geo = new T.CylinderGeometry(TILE, TILE, 0.5, 6); geo.rotateY(Math.PI / 2);
+    add(geo, [sideMat, top, sideMat], pos.x, 0, pos.z);
+    const base = new T.CylinderGeometry(TILE - 0.1, TILE * 0.55, 2.2, 6); base.rotateY(Math.PI / 2);
+    add(base, stoneMat, pos.x, -1.35, pos.z, world, false);
+    if (rimColor != null) {
+      const rim = add(rimGeo, glow(rimColor, rimGlow), pos.x, 0.25, pos.z, world, false);
+      rim.rotation.x = -Math.PI / 2;
+    }
+  }
+  const woodTop = std(0xffffff, { map: woodTex, roughness: 0.42, metalness: 0.05 });
+  const lounge = [axial(1, -2), axial(-1, -1), axial(2, -1), axial(-2, 1), axial(1, 1), axial(-1, 2)];
+  const ZONES = { n8n: axial(1, -1), smeny: axial(1, 0), marketing: axial(0, 1), analytik: axial(-1, 1), pr: axial(-1, 0), terasa: axial(0, -1) };
+  hexTile(new T.Vector3(), std(0xffffff, { map: tileTex, roughness: 0.25 }), 0xc9a45c, 0.7);
+  BOTS.forEach((b) => hexTile(ZONES[b.id], woodTop, b.accent, 0.3));
+  hexTile(ZONES.terasa, woodTop, 0xc9a45c, 0.35);
+  lounge.forEach((p) => hexTile(p, woodTop, 0xc9a45c, 0.18));
+
+  // --- svetlá ---
+  const hemi = new T.HemisphereLight(0xffe9cf, 0x40304a, 0.7); scene.add(hemi);
+  const sun = new T.DirectionalLight(0xffe0b0, 1.1);
+  sun.position.set(-18, 30, 12); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); sun.shadow.bias = -0.0005;
+  Object.assign(sun.shadow.camera, { left: -22, right: 22, top: 22, bottom: -22, near: 1, far: 80 });
+  scene.add(sun);
+  const barLight = new T.PointLight(0xffa860, 1.2, 16, 1.6); barLight.position.set(0, 4.6, 0); scene.add(barLight);
+  const neonLight = new T.PointLight(0xffc27a, 0.9, 10, 2); scene.add(neonLight);
+
+  // --- BAR v strede ---
+  const barG = grp();
+  const entryDir = Math.atan2(ZONES.terasa.z, ZONES.terasa.x); // otvor baru smeruje k vchodu
+  function arcShape(r1, r2, gap) {
+    const a0 = -entryDir + gap / 2, a1 = -entryDir + Math.PI * 2 - gap / 2;
+    const s = new T.Shape(); s.moveTo(Math.cos(a0) * r1, Math.sin(a0) * r1);
+    s.absarc(0, 0, r1, a0, a1, false); s.lineTo(Math.cos(a1) * r2, Math.sin(a1) * r2);
+    s.absarc(0, 0, r2, a1, a0, true); return s;
+  }
+  const counter = add(new T.ExtrudeGeometry(arcShape(2.55, 1.95, 1.0), { depth: 1.05, bevelEnabled: true, bevelThickness: 0.03, bevelSize: 0.03, bevelSegments: 2, curveSegments: 48 }), std(0x2a150b, { roughness: 0.45 }), 0, 0.25, 0, barG);
+  counter.rotation.x = -Math.PI / 2;
+  const ctop = add(new T.ExtrudeGeometry(arcShape(2.7, 1.88, 0.95), { depth: 0.1, bevelEnabled: true, bevelThickness: 0.02, bevelSize: 0.02, bevelSegments: 2, curveSegments: 48 }), glossy(0x141317, { roughness: 0.12, clearcoat: 1 }), 0, 1.3, 0, barG);
+  ctop.rotation.x = -Math.PI / 2;
+  const strip = add(new T.ExtrudeGeometry(arcShape(2.58, 2.5, 1.02), { depth: 0.05, bevelEnabled: false, curveSegments: 48 }), glow(0xc9a45c, 1.4), 0, 0.32, 0, barG, false);
+  strip.rotation.x = -Math.PI / 2;
+  // zadný bar s policami a fľašami
+  add(new T.CylinderGeometry(0.62, 0.75, 3.0, 24), std(0x1a100b), 0, 1.75, 0, barG);
+  const bottleColors = [0x2f9e5b, 0xd8492b, 0xf2b84b, 0x3a74c9, 0x9b3fa8, 0x2fd3a8, 0xffe1a8];
+  const bottleMats = bottleColors.map((c) => new T.MeshPhysicalMaterial({ color: c, roughness: 0.08, metalness: 0, transmission: 0, transparent: true, opacity: 0.88, emissive: c, emissiveIntensity: 0.25, clearcoat: 1 }));
+  [1.2, 1.85, 2.5].forEach((y, row) => {
+    add(new T.CylinderGeometry(1.05, 1.05, 0.06, 32), std(0xb8913f, { metalness: 0.85, roughness: 0.3 }), 0, y - 0.03, 0, barG);
+    add(new T.TorusGeometry(1.05, 0.025, 6, 40), glow(0xffc36b, 1.2), 0, y + 0.01, 0, barG, false).rotation.x = Math.PI / 2;
+    for (let i = 0; i < 16; i++) {
+      const a = (i / 16) * Math.PI * 2 + row * 0.2, tall = 0.32 + ((i * 7 + row) % 3) * 0.07;
+      const bg = grp(barG, Math.cos(a) * 0.88, y, Math.sin(a) * 0.88);
+      add(new T.CylinderGeometry(0.075, 0.085, tall, 10), bottleMats[(i + row) % bottleMats.length], 0, tall / 2, 0, bg);
+      add(new T.CylinderGeometry(0.025, 0.04, 0.12, 8), bottleMats[(i + row) % bottleMats.length], 0, tall + 0.06, 0, bg);
+    }
+  });
+  // závesný rám s lampami
+  add(new T.TorusGeometry(2.25, 0.05, 8, 64), std(0xb8913f, { metalness: 0.9, roughness: 0.3 }), 0, 4.3, 0, barG).rotation.x = Math.PI / 2;
+  const lampBulbs = [];
+  for (let i = 0; i < 8; i++) {
+    const a = (i / 8) * Math.PI * 2, x = Math.cos(a) * 2.25, z = Math.sin(a) * 2.25;
+    add(new T.CylinderGeometry(0.01, 0.01, 0.7, 4), std(0x111111), x, 3.95, z, barG, false);
+    add(new T.ConeGeometry(0.26, 0.3, 20, 1, true), std(0xb8913f, { side: T.DoubleSide, metalness: 0.9, roughness: 0.3 }), x, 3.5, z, barG);
+    lampBulbs.push(add(new T.SphereGeometry(0.1, 12, 10), glow(0xffd29a, 2.2), x, 3.38, z, barG, false));
+  }
+  for (let i = 0; i < 4; i++) { const a = (i / 4) * Math.PI * 2 + 0.4; add(new T.CylinderGeometry(0.015, 0.015, 3, 4), std(0x111111), Math.cos(a) * 2.25, 5.8, Math.sin(a) * 2.25, barG, false); }
+  // pípy a barové stoličky
+  for (let i = -1; i <= 1; i++) {
+    const a = entryDir + 0.75 + i * 0.16, x = Math.cos(a) * 2.25, z = Math.sin(a) * 2.25;
+    add(new T.CylinderGeometry(0.05, 0.05, 0.55, 10), std(0xd9c27a, { metalness: 0.85, roughness: 0.25 }), x, 1.65, z, barG);
+    add(new T.SphereGeometry(0.07, 10, 8), std(0x111111), x, 1.95, z, barG);
+  }
+  const stoolSeat = std(0x5c1a1f, { roughness: 0.55 });
+  for (let i = 0; i < 9; i++) {
+    const a = entryDir + 0.9 + (i / 8) * (Math.PI * 2 - 1.8), x = Math.cos(a) * 3.0, z = Math.sin(a) * 3.0;
+    add(new T.CylinderGeometry(0.26, 0.24, 0.1, 20), stoolSeat, x, 0.98, z, barG);
+    add(new T.CylinderGeometry(0.04, 0.05, 0.7, 8), std(0xb8913f, { metalness: 0.9, roughness: 0.3 }), x, 0.6, z, barG);
+    add(new T.TorusGeometry(0.17, 0.02, 6, 16), std(0xb8913f, { metalness: 0.9, roughness: 0.3 }), x, 0.5, z, barG).rotation.x = Math.PI / 2;
+  }
+
+  // --- nábytok ---
+  function plant(parent, x, z, s = 1) {
+    const g = grp(parent, x, 0.25, z); g.scale.setScalar(s);
+    add(new T.CylinderGeometry(0.28, 0.22, 0.45, 14), std(0x1c1b1f, { roughness: 0.4 }), 0, 0.22, 0, g);
+    [[0, 0.75, 0, 0.36], [0.18, 0.62, 0.1, 0.27], [-0.16, 0.66, -0.08, 0.28], [0.02, 1.0, 0.04, 0.22]].forEach(([a, b, c, r]) => add(new T.IcosahedronGeometry(r, 0), std(0x2b5a3e, { roughness: 0.8, flatShading: true }), a, b, c, g));
+    return g;
+  }
+  const candleFlames = [];
+  function table(parent, x, z) {
+    const g = grp(parent, x, 0.25, z);
+    add(new T.CylinderGeometry(0.62, 0.62, 0.07, 28), glossy(0x17161a, { roughness: 0.1, clearcoat: 1 }), 0, 0.82, 0, g);
+    add(new T.CylinderGeometry(0.05, 0.05, 0.78, 8), std(0xb8913f, { metalness: 0.9, roughness: 0.3 }), 0, 0.42, 0, g);
+    add(new T.CylinderGeometry(0.3, 0.3, 0.04, 20), std(0xb8913f, { metalness: 0.9, roughness: 0.3 }), 0, 0.02, 0, g);
+    add(new T.CylinderGeometry(0.06, 0.06, 0.12, 10), std(0xf6efe3), 0.12, 0.92, 0.05, g);
+    candleFlames.push(add(new T.SphereGeometry(0.035, 8, 6), glow(0xffb347, 3), 0.12, 1.01, 0.05, g, false));
+    return g;
+  }
+  function chair(parent, x, z, face) {
+    const g = grp(parent, x, 0.25, z); g.lookAt(face.x, 0.25, face.z);
+    add(new T.BoxGeometry(0.5, 0.08, 0.5), std(0x1f3d33, { roughness: 0.85 }), 0, 0.5, 0, g);
+    add(new T.BoxGeometry(0.5, 0.55, 0.07), std(0x1f3d33, { roughness: 0.85 }), 0, 0.8, -0.24, g);
+    [[-0.2, -0.2], [0.2, -0.2], [-0.2, 0.2], [0.2, 0.2]].forEach(([a, b]) => add(new T.CylinderGeometry(0.025, 0.025, 0.5, 6), std(0x2a2a2e), a, 0.25, b, g));
+    return g;
+  }
+
+  // --- roboti ---
+  const EYE = 0x6ff7da;
+  function makeRobot({ body = 0xf4f3ee, accent = 0x2fd3a8, boss = false, guest = false, eye = EYE, vest = null }) {
+    const root = grp(world); const g = grp(root);
+    const bodyMat = glossy(body), accMat = glossy(accent), dark = glossy(0x1b2120, { roughness: 0.25 });
+    // nohy
+    const legs = [-0.16, 0.16].map((x) => {
+      const p = grp(g, x, 0.58, 0);
+      add(new T.CylinderGeometry(0.075, 0.07, 0.42, 10), dark, 0, -0.21, 0, p);
+      const foot = add(new T.SphereGeometry(0.13, 14, 10), dark, 0, -0.45, 0.04, p); foot.scale.set(1, 0.6, 1.35);
+      return p;
+    });
+    // telo
+    const torso = add(new T.SphereGeometry(0.5, 28, 20), vest != null ? glossy(vest) : bodyMat, 0, 1.02, 0, g); torso.scale.set(1, 1.05, 0.86);
+    add(new T.TorusGeometry(0.45, 0.06, 10, 32), accMat, 0, 0.8, 0, g).rotation.x = Math.PI / 2;
+    const badge = add(new T.CircleGeometry(0.08, 18), glow(accent, 1.2), 0.18, 1.2, 0.44, g, false); badge.rotation.y = 0.35;
+    // motýlik
+    [-1, 1].forEach((s) => { const c = add(new T.ConeGeometry(0.08, 0.16, 4), glossy(0xc9a45c, { metalness: 0.6 }), s * 0.08, 1.5, 0.36, g); c.rotation.z = (s * Math.PI) / 2; });
+    // hlava
+    const head = grp(g, 0, 1.55, 0);
+    const skull = add(new T.SphereGeometry(0.46, 28, 20), bodyMat, 0, 0.34, 0, head); skull.scale.set(1.12, 0.88, 1);
+    const visor = add(new T.SphereGeometry(0.4, 28, 18), glossy(0x0b0f0e, { roughness: 0.12, clearcoat: 1 }), 0, 0.33, 0.12, head); visor.scale.set(0.98, 0.6, 0.82);
+    const eyes = [-0.13, 0.13].map((x) => { const e = add(new T.SphereGeometry(0.065, 14, 10), glow(eye, 2), x, 0.36, 0.43, head, false); e.scale.set(1, 1.35, 0.5); return e; });
+    [-1, 1].forEach((s) => { const ear = add(new T.CylinderGeometry(0.11, 0.11, 0.08, 16), accMat, s * 0.52, 0.34, 0, head); ear.rotation.z = Math.PI / 2; });
+    let bulb = null;
+    if (boss) {
+      add(new T.CylinderGeometry(0.5, 0.5, 0.05, 24), glossy(0x161616), 0, 0.66, 0, head);
+      add(new T.CylinderGeometry(0.33, 0.35, 0.42, 24), glossy(0x161616), 0, 0.88, 0, head);
+      add(new T.CylinderGeometry(0.355, 0.355, 0.08, 24), glossy(0xd9a43a), 0, 0.72, 0, head);
+      const mus = add(new T.TorusGeometry(0.11, 0.035, 8, 16, Math.PI), glossy(0x2a1a10), 0, 0.2, 0.45, head); mus.rotation.z = Math.PI;
+    } else if (!guest) {
+      add(new T.CylinderGeometry(0.02, 0.02, 0.28, 6), dark, 0, 0.8, 0, head);
+      bulb = add(new T.SphereGeometry(0.085, 14, 10), glow(accent, 1.2), 0, 0.97, 0, head, false);
+    }
+    // ruky
+    const arms = [-1, 1].map((s) => {
+      const p = grp(g, s * 0.52, 1.28, 0);
+      add(new T.CylinderGeometry(0.07, 0.065, 0.46, 10), bodyMat, 0, -0.23, 0, p);
+      add(new T.SphereGeometry(0.1, 12, 10), dark, 0, -0.5, 0, p);
+      p.rotation.z = s * 0.12; return p;
+    });
+    // tácka s drinkom v pravej ruke (len čašníci)
+    const tray = grp(arms[1], 0, -0.52, 0.05);
+    add(new T.CylinderGeometry(0.34, 0.34, 0.03, 24), std(0xc8ccd0, { metalness: 0.85, roughness: 0.25 }), 0, 0.02, 0.18, tray);
+    const glass = new T.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.05, transparent: true, opacity: 0.35, clearcoat: 1 });
+    add(new T.CylinderGeometry(0.07, 0.055, 0.2, 12), glass, 0.08, 0.13, 0.2, tray);
+    add(new T.CylinderGeometry(0.06, 0.05, 0.13, 12), glow(0xff8a3d, 0.6), 0.08, 0.1, 0.2, tray, false);
+    add(new T.CylinderGeometry(0.06, 0.05, 0.18, 12), glass, -0.12, 0.12, 0.12, tray);
+    add(new T.CylinderGeometry(0.05, 0.045, 0.1, 12), glow(0xffd85c, 0.5), -0.12, 0.08, 0.12, tray, false);
+    tray.visible = false;
+    // šéf drží šejker
+    let shaker = null;
+    if (boss) { shaker = grp(arms[1], 0, -0.55, 0.08); add(new T.CylinderGeometry(0.09, 0.07, 0.36, 14), std(0xd8dde2, { metalness: 0.9, roughness: 0.2 }), 0, 0.12, 0, shaker); add(new T.CylinderGeometry(0.05, 0.08, 0.1, 14), std(0xd8dde2, { metalness: 0.9, roughness: 0.2 }), 0, 0.35, 0, shaker); }
+    if (boss) g.scale.setScalar(1.18);
+    return { root, g, legs, arms, head, eyes, bulb, tray, shaker, blinkAt: 2 + Math.random() * 4 };
+  }
+
+  // --- zóny čašníkov ---
+  const blinkers = [], holos = [];
+  function zoneGroup(pos) { const g = grp(world, pos.x, 0.25, pos.z); g.lookAt(0, 0.25, 0); return g; } // +z smeruje k baru
+  function screenTex(draw, w = 512, hh = 320) { return canvasTex(w, hh, draw); }
+
+  // n8n: servery a hologram s uzlami
+  (() => {
+    const g = zoneGroup(ZONES.n8n);
+    [-0.75, 0.75].forEach((x) => {
+      add(new T.BoxGeometry(1.0, 2.3, 0.8), glossy(0x1f2a28, { roughness: 0.4 }), x, 1.15, -1.7, g);
+      for (let r = 0; r < 7; r++) for (let c = 0; c < 3; c++) blinkers.push(add(new T.BoxGeometry(0.16, 0.06, 0.02), glow(c === 2 ? 0xffb347 : 0x2fd3a8, 1.5), x - 0.3 + c * 0.3, 0.4 + r * 0.28, -1.29, g, false));
+    });
+    const tex = screenTex((c, w, hh) => {
+      c.fillStyle = "rgba(10,40,34,.75)"; c.fillRect(0, 0, w, hh);
+      c.strokeStyle = "#2fd3a8"; c.lineWidth = 4; c.strokeRect(4, 4, w - 8, hh - 8);
+      const nodes = [[70, 160, "Timer"], [200, 90, "Sheet"], [200, 230, "Stock"], [340, 160, "Email"], [450, 160, "Done"]];
+      c.lineWidth = 5; c.strokeStyle = "#7ff3d3";
+      [[0, 1], [0, 2], [1, 3], [2, 3], [3, 4]].forEach(([a, b]) => { c.beginPath(); c.moveTo(nodes[a][0], nodes[a][1]); c.bezierCurveTo(nodes[a][0] + 60, nodes[a][1], nodes[b][0] - 60, nodes[b][1], nodes[b][0], nodes[b][1]); c.stroke(); });
+      nodes.forEach(([x, y, t]) => { c.fillStyle = "#123a33"; c.fillRect(x - 46, y - 26, 92, 52); c.strokeStyle = "#2fd3a8"; c.strokeRect(x - 46, y - 26, 92, 52); c.fillStyle = "#e9fff8"; c.font = font(20); c.textAlign = "center"; c.fillText(t, x, y + 7); });
+      c.fillStyle = "#2fd3a8"; c.font = font(22); c.textAlign = "left"; c.fillText("n8n · 3 automations running", 20, 34);
+    });
+    const holo = add(new T.PlaneGeometry(2.4, 1.5), new T.MeshBasicMaterial({ map: tex, transparent: true, opacity: 0.92, side: T.DoubleSide }), 0, 2.2, -0.9, g, false);
+    holos.push(holo);
+    add(new T.CylinderGeometry(0.45, 0.55, 0.15, 24), glossy(0x1f2a28), 0, 0.08, -0.9, g);
+    add(new T.CylinderGeometry(0.38, 0.38, 0.02, 24), glow(0x2fd3a8, 1.4), 0, 0.17, -0.9, g, false);
+    plant(g, 2.0, -1.2, 0.9);
+    g.traverse((m) => (m.userData.zone = "n8n"));
+  })();
+
+  // smeny: veľká tabuľa s rozpisom
+  (() => {
+    const g = zoneGroup(ZONES.smeny);
+    const tex = canvasTex(640, 400, (c, w, hh) => {
+      c.fillStyle = "#16171a"; c.fillRect(0, 0, w, hh);
+      c.fillStyle = "#e2c48a"; c.font = font(28, 800); c.fillText("Rota · 2 – 8 Nov", 24, 44);
+      const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], am = ["Lena", "Lena", "Lena", "Lena", "Lena", "Emil", "Emil"], pm = ["Tobias", "Tobias", "Tobias", "Mira", "Tobias", "Tobias", "Jonas"];
+      days.forEach((d, i) => {
+        const x = 24 + i * 86;
+        c.fillStyle = "#cfc6b4"; c.font = font(20, 700); c.fillText(d, x + 6, 86);
+        c.fillStyle = "#b8913f"; c.fillRect(x, 100, 78, 110); c.fillStyle = "#3b2a14"; c.font = font(17, 700); c.fillText(am[i], x + 6, 130); c.font = font(13, 500); c.fillText("morning", x + 6, 150);
+        c.fillStyle = i >= 4 ? "#a8574a" : "#4e6f8c"; c.fillRect(x, 222, 78, 140); c.fillStyle = "#f4ecdc"; c.font = font(17, 700); c.fillText(pm[i], x + 6, 252); c.font = font(13, 500); c.fillText("evening", x + 6, 272);
+        if (i === 4) { c.fillStyle = "#fff"; c.font = font(13, 700); c.fillText("Jazz", x + 6, 296); }
+      });
+    });
+    add(new T.BoxGeometry(3.0, 1.9, 0.12), std(0xb8913f, { metalness: 0.9, roughness: 0.3 }), 0, 1.75, -1.8, g);
+    add(new T.PlaneGeometry(2.86, 1.78), new T.MeshStandardMaterial({ map: tex, roughness: 0.8 }), 0, 1.75, -1.73, g, false);
+    [-1.3, 1.3].forEach((x) => add(new T.BoxGeometry(0.1, 0.9, 0.1), std(0x3b2a20), x, 0.45, -1.8, g));
+    add(new T.BoxGeometry(1.4, 0.08, 0.7), glossy(0x17161a, { clearcoat: 1 }), -0.9, 0.85, -0.5, g);
+    add(new T.BoxGeometry(0.08, 0.8, 0.6), std(0x2a2a2e), -1.55, 0.42, -0.5, g); add(new T.BoxGeometry(0.08, 0.8, 0.6), std(0x2a2a2e), -0.25, 0.42, -0.5, g);
+    add(new T.BoxGeometry(0.35, 0.03, 0.25), std(0xffffff), -1.0, 0.9, -0.5, g);
+    plant(g, 1.9, -0.9, 0.85);
+    g.traverse((m) => (m.userData.zone = "smeny"));
+  })();
+
+  // marketing: foto kútik s kruhovým svetlom a koktailom
+  (() => {
+    const g = zoneGroup(ZONES.marketing);
+    const back = add(new T.CylinderGeometry(2.0, 2.0, 2.4, 32, 1, true, Math.PI * 0.7, Math.PI * 0.6), std(0x3a1d1a, { side: T.DoubleSide, roughness: 0.95 }), 0, 1.2, -0.2, g);
+    back.rotation.y = Math.PI;
+    add(new T.CylinderGeometry(0.35, 0.4, 0.9, 20), glossy(0x17161a, { clearcoat: 1 }), 0.2, 0.45, -1.0, g);
+    const glass = new T.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.05, transparent: true, opacity: 0.35, clearcoat: 1 });
+    add(new T.ConeGeometry(0.2, 0.25, 20, 1, true), glass, 0.2, 1.12, -1.0, g).rotation.x = Math.PI;
+    add(new T.ConeGeometry(0.17, 0.2, 20), glow(0xff8a3d, 0.7), 0.2, 1.13, -1.0, g, false).rotation.x = Math.PI;
+    add(new T.CylinderGeometry(0.015, 0.015, 0.2, 6), glass, 0.2, 0.92, -1.0, g);
+    add(new T.TorusGeometry(0.06, 0.02, 6, 12), glow(0xffd85c, 0.5), 0.33, 1.25, -1.0, g, false);
+    // kruhové svetlo
+    add(new T.CylinderGeometry(0.03, 0.03, 1.8, 6), std(0x222222), -1.3, 0.9, -0.6, g);
+    const ring = add(new T.TorusGeometry(0.42, 0.05, 10, 40), glow(0xffffff, 2.2), -1.3, 1.9, -0.6, g, false); ring.rotation.y = 0.7;
+    // kamera na statíve
+    const cg = grp(g, 1.2, 0, 0.2);
+    for (let k = 0; k < 3; k++) { const leg = add(new T.CylinderGeometry(0.025, 0.025, 1.35, 6), std(0x222222), Math.cos(k * 2.1) * 0.22, 0.65, Math.sin(k * 2.1) * 0.22, cg); leg.rotation.z = Math.cos(k * 2.1) * 0.22; leg.rotation.x = -Math.sin(k * 2.1) * 0.22; }
+    add(new T.BoxGeometry(0.5, 0.36, 0.3), glossy(0x1d1d1f), 0, 1.45, 0, cg);
+    const lens = add(new T.CylinderGeometry(0.13, 0.15, 0.3, 18), glossy(0x111111), 0, 1.45, -0.28, cg); lens.rotation.x = Math.PI / 2;
+    blinkers.push(add(new T.SphereGeometry(0.035, 8, 6), glow(0xff3b3b, 2), 0.18, 1.6, -0.12, cg, false));
+    cg.lookAt(g.localToWorld(new T.Vector3(0.2, 1, -1)).clone().setY(0));
+    g.traverse((m) => (m.userData.zone = "marketing"));
+  })();
+
+  // analytik: stôl s monitorom a holografickým grafom
+  (() => {
+    const g = zoneGroup(ZONES.analytik);
+    add(new T.BoxGeometry(2.0, 0.08, 0.9), glossy(0x2a170d, { clearcoat: 1 }), 0, 0.85, -1.3, g);
+    [-0.9, 0.9].forEach((x) => add(new T.BoxGeometry(0.06, 0.8, 0.8), std(0x2a2a2e), x, 0.42, -1.3, g));
+    const tex = screenTex((c, w, hh) => {
+      c.fillStyle = "#0e1a26"; c.fillRect(0, 0, w, hh);
+      c.fillStyle = "#7cc4ff"; c.font = font(24); c.fillText("Sales (sample)", 20, 38);
+      [90, 130, 110, 170, 150, 220, 260].forEach((v, i) => { c.fillStyle = i === 6 ? "#ff6b3d" : "#7cc4ff"; c.fillRect(30 + i * 66, hh - 20 - v, 44, v); });
+    });
+    add(new T.BoxGeometry(1.2, 0.75, 0.06), glossy(0x111418), 0, 1.4, -1.55, g);
+    add(new T.PlaneGeometry(1.12, 0.67), new T.MeshBasicMaterial({ map: tex }), 0, 1.4, -1.515, g, false);
+    add(new T.CylinderGeometry(0.03, 0.05, 0.3, 8), std(0x2a2a2e), 0, 1.0, -1.55, g);
+    const hg = grp(g, 1.6, 0, -0.4);
+    add(new T.CylinderGeometry(0.5, 0.6, 0.12, 24), glossy(0x1d2730), 0, 0.06, 0, hg);
+    [0.5, 0.9, 0.7, 1.3].forEach((v, i) => { const bar = add(new T.BoxGeometry(0.16, v, 0.16), new T.MeshStandardMaterial({ color: 0x7cc4ff, emissive: 0x7cc4ff, emissiveIntensity: 1, transparent: true, opacity: 0.7 }), -0.27 + i * 0.18, 0.25 + v / 2, 0, hg, false); holos.push(bar); });
+    chair(g, 0, -0.55, g.localToWorld(new T.Vector3(0, 0, -2)));
+    plant(g, -1.9, -0.9, 0.9);
+    g.traverse((m) => (m.userData.zone = "analytik"));
+  })();
+
+  // PR: malé pódium s mikrofónom a reflektorom
+  (() => {
+    const g = zoneGroup(ZONES.pr);
+    add(new T.CylinderGeometry(1.4, 1.5, 0.3, 32), glossy(0x2b1733), 0, 0.15, -0.9, g);
+    add(new T.TorusGeometry(1.42, 0.03, 6, 48), glow(0xc77dff, 1.6), 0, 0.31, -0.9, g, false).rotation.x = Math.PI / 2;
+    add(new T.CylinderGeometry(0.02, 0.02, 1.3, 6), std(0x222222, { metalness: 0.7 }), 0.3, 0.95, -0.6, g);
+    add(new T.SphereGeometry(0.08, 12, 10), std(0x333333, { metalness: 0.6, roughness: 0.3 }), 0.3, 1.62, -0.6, g);
+    [-1.1, 1.1].forEach((x) => { add(new T.BoxGeometry(0.5, 0.9, 0.45), glossy(0x1b1b1f), x, 0.75, -1.4, g); add(new T.CylinderGeometry(0.15, 0.15, 0.03, 18), std(0x444444), x, 0.85, -1.17, g).rotation.x = Math.PI / 2; });
+    const beam = add(new T.ConeGeometry(1.1, 4, 28, 1, true), new T.MeshBasicMaterial({ color: 0xe9c6ff, transparent: true, opacity: 0.09, depthWrite: false, side: T.DoubleSide }), 0, 2.3, -0.9, g, false);
+    holos.push(beam);
+    const sign = canvasTex(256, 96, (c, w, hh) => { c.fillStyle = "#1b0f22"; c.fillRect(0, 0, w, hh); c.fillStyle = "#ff4f6b"; c.font = font(46, 800); c.textAlign = "center"; c.fillText("ON AIR", w / 2, 64); });
+    add(new T.PlaneGeometry(1.1, 0.42), new T.MeshBasicMaterial({ map: sign }), 0, 2.4, -1.9, g, false);
+    g.traverse((m) => (m.userData.zone = "pr"));
+  })();
+
+  // vchod s neónom
+  (() => {
+    const g = zoneGroup(ZONES.terasa);
+    const neon = canvasTex(512, 160, (c, w, hh) => {
+      c.clearRect(0, 0, w, hh); c.textAlign = "center";
+      c.shadowColor = "#e9b35c"; c.shadowBlur = 26; c.fillStyle = "#ffe7b8"; c.font = "italic 700 70px Georgia, serif"; c.fillText("Bar Demo", w / 2, 76);
+      c.shadowColor = "#e9b35c"; c.fillStyle = "#ffe7b8"; c.font = "600 34px Georgia, serif"; c.fillText("L I N Z", w / 2, 134);
+    });
+    [-1.6, 1.6].forEach((x) => add(new T.BoxGeometry(0.3, 3.0, 0.3), std(0x141217), x, 1.5, -1.9, g));
+    add(new T.BoxGeometry(3.6, 0.3, 0.35), std(0xb8913f, { metalness: 0.9, roughness: 0.3 }), 0, 3.1, -1.9, g);
+    const sign = add(new T.PlaneGeometry(3.0, 0.95), new T.MeshBasicMaterial({ map: neon, transparent: true, side: T.DoubleSide }), 0, 3.85, -1.9, g, false);
+    const mat = canvasTex(256, 320, (c, w, hh) => { c.fillStyle = "#121314"; c.fillRect(0, 0, w, hh); c.fillStyle = "#f3efe6"; c.font = font(30, 800); c.fillText("Tonight", 24, 50); c.font = font(22, 500); ["Happy hour 5 – 7 pm", "Jazz on Friday", "House lemonade"].forEach((t, i) => c.fillText(t, 24, 110 + i * 48)); });
+    const board = grp(g, 1.6, 0, 0.3); board.rotation.y = 0.5;
+    add(new T.BoxGeometry(0.75, 1.0, 0.05), new T.MeshStandardMaterial({ map: mat }), 0, 0.7, 0, board);
+    plant(g, -2.0, -1.0); plant(g, 2.0, -1.2, 0.9);
+    neonLight.position.copy(g.localToWorld(new T.Vector3(0, 3.5, -1.2)));
+    table(g, -1.0, 0.6);
+    g.traverse((m) => (m.userData.zone = "boss"));
+  })();
+
+  // salóniky so stolmi a hosťami
+  const guests = [];
+  const guestColors = [0x8c6f58, 0x51627a, 0x7a5a74, 0x557566, 0x9a8a62, 0x6b6878];
+  lounge.forEach((p, i) => {
+    const g = grp(world, p.x, 0, p.z);
+    const tables = i % 2 ? [[-0.9, -0.6], [1.0, 0.7]] : [[0, 0]];
+    tables.forEach(([x, z], j) => {
+      table(g, x, z);
+      const seats = [0, 2.3, 4.2].slice(0, i % 2 ? 2 : 3);
+      seats.forEach((a, k) => {
+        const sx = x + Math.cos(a) * 0.95, sz = z + Math.sin(a) * 0.95;
+        chair(g, sx, sz, new T.Vector3(p.x + x, 0, p.z + z));
+        if ((i + j + k) % 2 === 0) {
+          const r = makeRobot({ body: guestColors[(i + k) % guestColors.length], accent: 0x9aa3a0, guest: true, eye: 0xffe9a8 });
+          r.root.position.set(p.x + sx, 0.42, p.z + sz); r.root.lookAt(p.x + x, 0.42, p.z + z);
+          r.root.scale.setScalar(0.78);
+          r.legs.forEach((l) => (l.rotation.x = -1.45)); r.g.position.y = -0.18;
+          guests.push({ ...r, phase: Math.random() * 10 });
+        }
+      });
+    });
+    plant(g, Math.cos(i) * 2.3, Math.sin(i) * 2.3, 0.8);
+  });
+
+  // --- šéf barman a čašníci ---
+  const actors = [];
+  const boss = makeRobot({ body: 0xe6e0d2, accent: 0xc9a45c, boss: true, vest: 0x5a1822 });
+  boss.root.position.set(1.35, 0.25, 0);
+  actors.push({ id: "boss", name: "Head bartender", boss: true, ...boss, ang: 0, angT: 0.5, wait: 0 });
+  BOTS.forEach((b) => {
+    const r = makeRobot({ body: 0xe6e0d2, accent: b.accent, vest: 0x1c1b20 });
+    const z = ZONES[b.id], dir = new T.Vector3(-z.x, 0, -z.z).normalize();
+    const work = z.clone().addScaledVector(dir, 0.6).setY(0.25);
+    const deliver = dir.clone().multiplyScalar(-3.3).setY(0.25); // pred pultom smerom k zóne
+    r.root.position.copy(work);
+    actors.push({ id: b.id, name: b.name, bot: b, ...r, zone: z, work, deliver, phase: 0, state: "idle" });
+  });
+  actors.forEach((a) => a.root.traverse((m) => (m.userData.actor = a.id)));
+
+  // menovky
+  actors.forEach((a) => {
+    a.dot = h("i", {}); a.count = h("em", { hidden: true });
+    a.tag = h("button", { class: "tag", type: "button", onclick: () => openPop(a.id) }, a.dot, a.name, a.count);
+    stage.append(a.tag);
+  });
+
+  // --- kamera a ovládanie ---
+  const cam0 = { yaw: -0.6, pitch: 0.78, dist: 1, target: new T.Vector3(0, 0.6, 0) };
+  const view = { yaw: cam0.yaw, pitch: cam0.pitch, zoom: 1, target: cam0.target.clone() };
+  const goal = { yaw: view.yaw, pitch: view.pitch, zoom: 1, target: view.target.clone() };
+  let lastInput = performance.now();
+  const ptrs = new Map(); let pinch0 = 0, zoom0 = 1, moved = 0;
+  const cv = renderer.domElement;
+  cv.addEventListener("pointerdown", (e) => { cv.setPointerCapture(e.pointerId); ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY }); moved = 0; lastInput = performance.now(); if (ptrs.size === 2) { const [p, q] = [...ptrs.values()]; pinch0 = Math.hypot(p.x - q.x, p.y - q.y); zoom0 = goal.zoom; } });
+  cv.addEventListener("pointermove", (e) => {
+    const p = ptrs.get(e.pointerId); if (!p) return;
+    const dx = e.clientX - p.x, dy = e.clientY - p.y; p.x = e.clientX; p.y = e.clientY; moved += Math.abs(dx) + Math.abs(dy); lastInput = performance.now();
+    if (ptrs.size === 1) { goal.yaw -= dx * 0.006; goal.pitch = Math.min(1.25, Math.max(0.42, goal.pitch + dy * 0.004)); }
+    else if (ptrs.size === 2) { const [a, b] = [...ptrs.values()]; const d = Math.hypot(a.x - b.x, a.y - b.y); goal.zoom = Math.min(2.6, Math.max(0.7, zoom0 * (d / pinch0))); }
+  });
+  const end = (e) => { const was = ptrs.size === 1 && moved < 8; ptrs.delete(e.pointerId); if (was && e.type === "pointerup") pick(e); };
+  cv.addEventListener("pointerup", end); cv.addEventListener("pointercancel", end);
+  cv.addEventListener("wheel", (e) => { e.preventDefault(); lastInput = performance.now(); goal.zoom = Math.min(2.6, Math.max(0.7, goal.zoom * (e.deltaY > 0 ? 0.9 : 1.1))); }, { passive: false });
+  $("#recenter").addEventListener("click", () => { Object.assign(goal, { yaw: cam0.yaw, pitch: cam0.pitch, zoom: 1 }); goal.target.copy(cam0.target); closePop(); });
+  const ray = new T.Raycaster(), ndc = new T.Vector2();
+  function pick(e) {
+    const r = cv.getBoundingClientRect();
+    ndc.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+    ray.setFromCamera(ndc, cam);
+    const hit = ray.intersectObjects(world.children, true).find((x) => x.object.userData.actor || x.object.userData.zone);
+    if (hit) openPop(hit.object.userData.actor || hit.object.userData.zone); else closePop();
+  }
+  focusActor = (id) => { const a = actors.find((q) => q.id === id); if (!a) return; goal.target.copy(a.root.position).setY(0.6); goal.zoom = Math.max(goal.zoom, 1.5); lastInput = performance.now(); };
+
+  function resize() {
+    const w = stage.clientWidth, hh = stage.clientHeight;
+    cam.aspect = w / hh; cam.updateProjectionMatrix(); renderer.setSize(w, hh, false);
+  }
+  new ResizeObserver(resize).observe(stage); resize();
+
+  // --- karta nad postavou ---
+  let popId = null; const pop = h("div", { class: "pop", hidden: true }); stage.append(pop);
+  function openPop(id) { popId = id; fillPop(); pop.hidden = false; focusActor(id); }
+  function closePop() { popId = null; pop.hidden = true; }
+  function fillPop() {
+    if (!popId) return;
+    if (popId === "boss") {
+      const n = tasks.filter((t) => !CLOSED.includes(t.stav)).length;
+      pop.replaceChildren(
+        h("div", { class: "top2" }, h("div", { class: "face", style: "--c:#f2b84b" }, h("b", {})),
+          h("div", { style: "min-width:0" }, h("div", { class: "t" }, "Head bartender"), h("div", { class: "sub" }, h("span", { class: "st", style: "--c:#4fd1a1" }, "Behind the bar"), h("span", {}, `${n} tasks in the queue`))),
+          h("button", { class: "x", type: "button", "aria-label": "Close", onclick: closePop }, "✕")),
+        h("p", { class: "what" }, "Tell me what you need and I will pass it to the right waiter."),
+        h("div", { class: "acts" },
+          h("button", { class: "go", type: "button", onclick: () => { closePop(); openSheet({ kind: "boss" }); } }, "Message me"),
+          h("button", { type: "button", onclick: () => { closePop(); openSheet({ kind: "queue" }); } }, "Tasks")));
+      return;
+    }
+    const b = botById(popId), st = botStatus(popId), [label, color] = STATE_UI[st.state];
+    pop.replaceChildren(
+      h("div", { class: "top2" }, h("div", { class: "face", style: `--c:${b.css}` }, h("b", {})),
+        h("div", { style: "min-width:0" }, h("div", { class: "t" }, b.name),
+          h("div", { class: "sub" }, h("span", { class: "st", style: `--c:${color}` }, label), h("span", {}, ago(st.when)), st.open ? h("span", {}, `${st.open} open`) : null)),
+        h("button", { class: "x", type: "button", "aria-label": "Close", onclick: closePop }, "✕")),
+      h("p", { class: "what" }, st.title),
+      h("div", { class: "prog", style: `--c:${color}` }, h("i", { class: st.state === "working" ? "run" : "", style: `width:${st.state === "idle" ? 0 : 100}%` })),
+      h("div", { class: "acts" },
+        h("button", { class: "go", type: "button", onclick: () => { closePop(); openSheet({ kind: "bot", bot: b.id, action: b.actions[0].id }); } }, "Open"),
+        st.log?.odkaz ? h("button", { type: "button", onclick: () => window.open(st.log.odkaz, "_blank", "noopener") }, "Thread") : h("button", { type: "button", onclick: closePop }, "Close")));
+  }
+
+  sceneRefresh = () => {
+    for (const a of actors) {
+      if (a.boss) { a.dot.className = "working"; continue; }
+      const st = botStatus(a.id); a.state = st.state; a.dot.className = st.state;
+      a.count.hidden = !st.open; a.count.textContent = st.open;
+    }
+    fillPop();
+  };
+  sceneRefresh();
+
+  // --- deň a noc podľa času v Linzi ---
+  const hourNow = () => Number(new Intl.DateTimeFormat("en-GB", { hour: "numeric", hour12: false, timeZone: "Europe/Vienna" }).format(new Date())) % 24;
+  function applyTime() {
+    const hr = hourNow();
+    const mode = hr >= 7 && hr < 17 ? "day" : hr >= 17 && hr < 19 ? "dusk" : "night";
+    const P = {
+      day: { sky: "radial-gradient(120% 90% at 50% 35%,#3a2c26 0%,#1d1716 55%,#0d0b0c 100%)", hemi: [0xffe6c4, 0x1a1210, 0.55], sun: [0xffe0b0, 1.0], lamp: 1.8, bar: 1.2, neon: 0.8, exp: 1.0 },
+      dusk: { sky: "radial-gradient(120% 90% at 50% 35%,#3a2320 0%,#1a1214 55%,#0a0809 100%)", hemi: [0xffc99a, 0x150d0e, 0.42], sun: [0xff9c5a, 0.75], lamp: 2.4, bar: 1.6, neon: 1.1, exp: 1.02 },
+      night: { sky: "radial-gradient(120% 90% at 50% 35%,#24191c 0%,#110c0f 55%,#060507 100%)", hemi: [0x9aa8d8, 0x0c0809, 0.3], sun: [0xa9b8ff, 0.4], lamp: 3.0, bar: 2.2, neon: 1.4, exp: 1.06 },
+    }[mode];
+    $("#app").style.setProperty("--sky", P.sky);
+    hemi.color.setHex(P.hemi[0]); hemi.groundColor.setHex(P.hemi[1]); hemi.intensity = P.hemi[2];
+    sun.color.setHex(P.sun[0]); sun.intensity = P.sun[1];
+    lampBulbs.forEach((b) => (b.material.emissiveIntensity = P.lamp));
+    barLight.intensity = P.bar; neonLight.intensity = P.neon; renderer.toneMappingExposure = P.exp;
+    const open = (hr > 7 || (hr === 7 && new Date().getMinutes() >= 30)) || hr === 0;
+    $("#open-state").textContent = `${{ day: "Afternoon", dusk: "Evening", night: "Night" }[mode]} · ${open ? "open" : "closed"}`;
+  }
+  applyTime(); setInterval(applyTime, 5 * 60 * 1000);
+
+  // --- animácia ---
+  const tmp = new T.Vector3(), tmp2 = new T.Vector3(), clock = new T.Clock();
+  function walkLegs(a, t, speed, amp) { const s = Math.sin(t * speed) * amp; a.legs[0].rotation.x = s; a.legs[1].rotation.x = -s; a.arms[0].rotation.x = -s * 0.8; if (!a.tray.visible) a.arms[1].rotation.x = s * 0.8; }
+  function idleLegs(a) { a.legs[0].rotation.x *= 0.85; a.legs[1].rotation.x *= 0.85; a.arms[0].rotation.x *= 0.85; if (!a.tray.visible) a.arms[1].rotation.x *= 0.85; }
+  function faceTo(a, x, z, k = 0.15) { const want = Math.atan2(x - a.root.position.x, z - a.root.position.z); let d = want - a.root.rotation.y; d = Math.atan2(Math.sin(d), Math.cos(d)); a.root.rotation.y += d * k; }
+  let first = true;
+  function frame() {
+    const dt = Math.min(0.05, clock.getDelta()), t = clock.elapsedTime;
+    // kamera: jemne sa sama otáča, keď sa jej nikto nedotýka
+    if (!reduce && performance.now() - lastInput > 9000 && !popId && !sheet) goal.yaw += dt * 0.04;
+    view.yaw += (goal.yaw - view.yaw) * 0.12; view.pitch += (goal.pitch - view.pitch) * 0.12; view.zoom += (goal.zoom - view.zoom) * 0.1;
+    view.target.lerp(goal.target, 0.08);
+    const aspect = cam.aspect, base = aspect < 0.8 ? 66 : aspect < 1.2 ? 52 : 46, dist = base / view.zoom;
+    cam.position.set(view.target.x + Math.sin(view.yaw) * Math.cos(view.pitch) * dist, view.target.y + Math.sin(view.pitch) * dist, view.target.z + Math.cos(view.yaw) * Math.cos(view.pitch) * dist);
+    cam.lookAt(view.target);
+
+    blinkers.forEach((b, i) => (b.material.emissiveIntensity = Math.sin(t * 2.5 + i * 1.9) > 0.1 ? 1.8 : 0.15));
+    candleFlames.forEach((f, i) => f.scale.setScalar(0.85 + Math.sin(t * 13 + i * 3) * 0.15));
+    holos.forEach((m, i) => { if (m.geometry.type === "PlaneGeometry") m.position.y = 2.2 + Math.sin(t * 1.4) * 0.06; else if (m.geometry.type === "BoxGeometry") m.scale.y = 0.85 + Math.sin(t * 1.8 + i) * 0.15; });
+
+    for (const a of actors) {
+      // žmurkanie
+      a.blinkAt -= dt; const blink = a.blinkAt < 0.12 && a.blinkAt > 0; if (a.blinkAt <= 0) a.blinkAt = 2.5 + Math.random() * 4;
+      a.eyes.forEach((e) => (e.scale.y = blink ? 0.15 : 1.35));
+      if (a.boss) {
+        // šéf sa presúva za pultom a občas mieša drink
+        if (reduce) continue;
+        a.wait -= dt;
+        if (a.wait <= 0 && Math.abs(a.angT - a.ang) < 0.02) { a.angT = entryDir + 0.8 + Math.random() * (Math.PI * 2 - 1.6); a.wait = 3 + Math.random() * 4; }
+        const diff = a.angT - a.ang, step = Math.sign(diff) * Math.min(Math.abs(diff), dt * 0.5);
+        a.ang += step;
+        a.root.position.set(Math.cos(a.ang) * 1.42, 0.25, Math.sin(a.ang) * 1.42);
+        a.root.rotation.y = Math.atan2(Math.cos(a.ang), Math.sin(a.ang));
+        if (Math.abs(step) > 0.0005) walkLegs(a, t, 8, 0.35); else idleLegs(a);
+        const shaking = Math.abs(step) <= 0.0005 && Math.sin(t * 0.7) > 0.3;
+        a.arms[1].rotation.x = shaking ? -2.4 + Math.sin(t * 22) * 0.35 : a.arms[1].rotation.x * 0.9;
+        a.head.rotation.y = Math.sin(t * 0.6) * 0.3;
+        continue;
+      }
+      const working = a.state === "working" && !reduce;
+      a.tray.visible = working;
+      if (working) {
+        // nosí tácku medzi stanovišťom a pultom
+        a.phase += dt * 0.16;
+        const k = (1 - Math.cos(a.phase * Math.PI)) / 2;
+        tmp.lerpVectors(a.work, a.deliver, k);
+        const goingToBar = Math.sin(a.phase * Math.PI) >= 0;
+        const dest = goingToBar ? a.deliver : a.work;
+        a.root.position.set(tmp.x, 0.25 + Math.abs(Math.sin(t * 8)) * 0.05, tmp.z);
+        faceTo(a, dest.x, dest.z, 0.2);
+        a.arms[1].rotation.x = -1.35;
+        const atEnd = k < 0.03 || k > 0.97;
+        if (atEnd) idleLegs(a); else walkLegs(a, t, 8, 0.5);
+      } else if (!reduce) {
+        // voľno: prechádza sa po svojom šesťuholníku
+        if (!a.target || a.root.position.distanceTo(a.target) < 0.12) {
+          a.wait = (a.wait ?? 0) - dt; idleLegs(a);
+          a.root.position.y = 0.25;
+          a.head.rotation.y = Math.sin(t * 0.8 + a.zone.x) * 0.5;
+          if (a.wait <= 0) { a.wait = 1.5 + Math.random() * 3; const ang = Math.random() * Math.PI * 2, rr = 0.6 + Math.random() * 1.3; a.target = tmp2.set(Math.cos(ang) * rr, 0, Math.sin(ang) * rr).add(a.zone).addScaledVector(new T.Vector3(-a.zone.x, 0, -a.zone.z).normalize(), 0.7).setY(0.25).clone(); }
+        } else {
+          tmp.copy(a.target).sub(a.root.position).setY(0); const len = tmp.length();
+          tmp.multiplyScalar(Math.min(len, dt * 1.0) / len);
+          a.root.position.add(tmp); a.root.position.y = 0.25 + Math.abs(Math.sin(t * 7)) * 0.04;
+          faceTo(a, a.target.x, a.target.z, 0.18); walkLegs(a, t, 7, 0.42); a.head.rotation.y *= 0.9;
+        }
+        a.arms[1].rotation.x *= 0.9;
+      } else { a.root.position.copy(a.work); }
+      // svetielko na anténe ukazuje stav
+      if (a.bulb) {
+        const col = a.state === "error" ? 0xff4b3b : a.state === "working" ? 0x3ddc97 : a.bot.accent;
+        a.bulb.material.color.setHex(col); a.bulb.material.emissive.setHex(col);
+        a.bulb.material.emissiveIntensity = a.state === "error" ? (Math.sin(t * 9) > 0 ? 2.5 : 0.2) : a.state === "working" ? 1.6 + Math.sin(t * 4) * 0.6 : 0.8;
+      }
+    }
+    // hostia pri stoloch
+    for (const g of guests) {
+      if (reduce) break;
+      const s = Math.sin(t * 0.9 + g.phase);
+      g.arms[1].rotation.x = s > 0.85 ? -1.6 : g.arms[1].rotation.x * 0.92;
+      g.head.rotation.y = Math.sin(t * 0.5 + g.phase) * 0.4;
+      g.g.position.y = -0.18 + Math.max(0, Math.sin(t * 3 + g.phase)) * 0.02;
+    }
+
+    renderer.render(scene, cam);
+    if (first) { first = false; $("#loading").hidden = true; }
+
+    // menovky a karta sledujú postavy
+    const W = stage.clientWidth, H = stage.clientHeight;
+    for (const a of actors) {
+      a.root.getWorldPosition(tmp); tmp.y += a.boss ? 3.55 : 2.75;
+      tmp.project(cam);
+      const vis = tmp.z < 1 && Math.abs(tmp.x) < 1.1 && Math.abs(tmp.y) < 1.1;
+      a.sx = (tmp.x + 1) / 2 * W; a.sy = (1 - tmp.y) / 2 * H;
+      a.tag.style.transform = `translate(${a.sx}px,${a.sy}px) translate(-50%,-100%)`;
+      a.tag.style.visibility = vis ? "visible" : "hidden";
+    }
+    if (popId) {
+      const a = actors.find((q) => q.id === popId);
+      const pw = pop.offsetWidth, ph = pop.offsetHeight;
+      const x = Math.max(16, Math.min(W - pw - 16, a.sx - pw / 2)), y = Math.max(80, Math.min(H - ph - 16, a.sy - ph - 30));
+      pop.style.transform = `translate(${x}px,${y}px)`;
+    }
+    requestAnimationFrame(frame);
+  }
+  frame();
+}
+
+// =====================================================================
+// HODINY, DÁTA A ŠTART
+// =====================================================================
+function tick() {
+  $("#clock").textContent = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Vienna" }).format(new Date());
+}
+tick(); setInterval(tick, 20000);
+
+try { initWorld(); }
+catch (e) {
+  console.error("3D:", e);
+  $("#loading").hidden = true;
+  $("#stage").append(h("div", { class: "fallback" }, h("p", {}, "The 3D bar could not load on this device."), h("p", { class: "note" }, "Use the side bar: head bartender, tasks and agent log.")));
+}
+
+function onData() {
+  const open = tasks.filter((t) => !CLOSED.includes(t.stav)).length;
+  $("#q-badge").hidden = !open; $("#q-badge").textContent = open;
+  sceneRefresh(); sheetLive();
+}
+(async () => {
+  [db, assets, sample] = await Promise.all([claude.use("db"), claude.use("assets"), claude.use("sample")]);
+  if (!db) return onData();
+  const err = () => {};
+  db.collection("ulohy").orderBy("vytvorene", "desc").limit(200).onSnapshot((s) => { tasks = s.docs.map((d) => ({ id: d.id, ...d.data() })); onData(); }, err);
+  db.collection("boti").onSnapshot((s) => { botDocs = Object.fromEntries(s.docs.map((d) => [d.id, d.data()])); onData(); }, err);
+  db.collection("dennik").orderBy("cas", "desc").limit(300).onSnapshot((s) => { logRows = s.docs.map((d) => ({ id: d.id, ...d.data() })); onData(); }, err);
+  const firma = await db.doc("firma/profil").get().catch(() => null);
+  if (firma?.exists && firma.data().nazov) $("#biz-name").textContent = firma.data().nazov;
+})();
+</script>
+
+</body></html>

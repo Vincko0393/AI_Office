@@ -1,0 +1,85 @@
+date,day,product,category,units,unit_price_eur,revenue_eur,note
+2026-10-19,Mon,Almdudler,Soft drinks,11,3.6,39.6,FICTIONAL
+2026-10-19,Mon,Aperol Spritz,Cocktails,18,7.5,135.0,FICTIONAL
+2026-10-19,Mon,Cappuccino,Coffee,39,3.8,148.2,FICTIONAL
+2026-10-19,Mon,Espresso,Coffee,43,2.6,111.8,FICTIONAL
+2026-10-19,Mon,Gin Tonic,Cocktails,19,8.9,169.1,FICTIONAL
+2026-10-19,Mon,Grüner Veltliner 1/8 l,Wine,11,4.2,46.2,FICTIONAL
+2026-10-19,Mon,Hugo,Cocktails,19,7.2,136.8,FICTIONAL
+2026-10-19,Mon,Linzer torte,Food,15,4.8,72.0,FICTIONAL
+2026-10-19,Mon,Melange,Coffee,50,3.9,195.0,FICTIONAL
+2026-10-19,Mon,Radler 0.5 l,Beer,25,4.5,112.5,FICTIONAL
+2026-10-19,Mon,Toast,Food,11,5.9,64.9,FICTIONAL
+2026-10-19,Mon,Zwickl beer 0.5 l,Beer,26,4.9,127.4,FICTIONAL
+2026-10-20,Tue,Almdudler,Soft drinks,8,3.6,28.8,FICTIONAL
+2026-10-20,Tue,Aperol Spritz,Cocktails,21,7.5,157.5,FICTIONAL
+2026-10-20,Tue,Cappuccino,Coffee,39,3.8,148.2,FICTIONAL
+2026-10-20,Tue,Espresso,Coffee,41,2.6,106.6,FICTIONAL
+2026-10-20,Tue,Gin Tonic,Cocktails,22,8.9,195.8,FICTIONAL
+2026-10-20,Tue,Grüner Veltliner 1/8 l,Wine,10,4.2,42.0,FICTIONAL
+2026-10-20,Tue,Hugo,Cocktails,19,7.2,136.8,FICTIONAL
+2026-10-20,Tue,Linzer torte,Food,15,4.8,72.0,FICTIONAL
+2026-10-20,Tue,Melange,Coffee,35,3.9,136.5,FICTIONAL
+2026-10-20,Tue,Radler 0.5 l,Beer,26,4.5,117.0,FICTIONAL
+2026-10-20,Tue,Toast,Food,14,5.9,82.6,FICTIONAL
+2026-10-20,Tue,Zwickl beer 0.5 l,Beer,33,4.9,161.7,FICTIONAL
+2026-10-21,Wed,Almdudler,Soft drinks,8,3.6,28.8,FICTIONAL
+2026-10-21,Wed,Aperol Spritz,Cocktails,24,7.5,180.0,FICTIONAL
+2026-10-21,Wed,Cappuccino,Coffee,48,3.8,182.4,FICTIONAL
+2026-10-21,Wed,Espresso,Coffee,55,2.6,143.0,FICTIONAL
+2026-10-21,Wed,Gin Tonic,Cocktails,22,8.9,195.8,FICTIONAL
+2026-10-21,Wed,Grüner Veltliner 1/8 l,Wine,12,4.2,50.4,FICTIONAL
+2026-10-21,Wed,Hugo,Cocktails,20,7.2,144.0,FICTIONAL
+2026-10-21,Wed,Linzer torte,Food,24,4.8,115.2,FICTIONAL
+2026-10-21,Wed,Melange,Coffee,54,3.9,210.6,FICTIONAL
+2026-10-21,Wed,Radler 0.5 l,Beer,35,4.5,157.5,FICTIONAL
+2026-10-21,Wed,Toast,Food,21,5.9,123.9,FICTIONAL
+2026-10-21,Wed,Zwickl beer 0.5 l,Beer,25,4.9,122.5,FICTIONAL
+2026-10-22,Thu,Almdudler,Soft drinks,16,3.6,57.6,FICTIONAL
+2026-10-22,Thu,Aperol Spritz,Cocktails,29,7.5,217.5,FICTIONAL
+2026-10-22,Thu,Cappuccino,Coffee,65,3.8,247.0,FICTIONAL
+2026-10-22,Thu,Espresso,Coffee,72,2.6,187.2,FICTIONAL
+2026-10-22,Thu,Gin Tonic,Cocktails,36,8.9,320.4,FICTIONAL
+2026-10-22,Thu,Grüner Veltliner 1/8 l,Wine,15,4.2,63.0,FICTIONAL
+2026-10-22,Thu,Hugo,Cocktails,33,7.2,237.6,FICTIONAL
+2026-10-22,Thu,Linzer torte,Food,19,4.8,91.2,FICTIONAL
+2026-10-22,Thu,Melange,Coffee,69,3.9,269.1,FICTIONAL
+2026-10-22,Thu,Radler 0.5 l,Beer,45,4.5,202.5,FICTIONAL
+2026-10-22,Thu,Toast,Food,21,5.9,123.9,FICTIONAL
+2026-10-22,Thu,Zwickl beer 0.5 l,Beer,43,4.9,210.7,FICTIONAL
+2026-10-23,Fri,Almdudler,Soft drinks,25,3.6,90.0,FICTIONAL
+2026-10-23,Fri,Aperol Spritz,Cocktails,74,7.5,555.0,FICTIONAL
+2026-10-23,Fri,Cappuccino,Coffee,112,3.8,425.6,FICTIONAL
+2026-10-23,Fri,Espresso,Coffee,105,2.6,273.0,FICTIONAL
+2026-10-23,Fri,Gin Tonic,Cocktails,73,8.9,649.7,FICTIONAL
+2026-10-23,Fri,Grüner Veltliner 1/8 l,Wine,38,4.2,159.6,FICTIONAL
+2026-10-23,Fri,Hugo,Cocktails,68,7.2,489.6,FICTIONAL
+2026-10-23,Fri,Linzer torte,Food,38,4.8,182.4,FICTIONAL
+2026-10-23,Fri,Melange,Coffee,114,3.9,444.6,FICTIONAL
+2026-10-23,Fri,Radler 0.5 l,Beer,53,4.5,238.5,FICTIONAL
+2026-10-23,Fri,Toast,Food,43,5.9,253.7,FICTIONAL
+2026-10-23,Fri,Zwickl beer 0.5 l,Beer,64,4.9,313.6,FICTIONAL
+2026-10-24,Sat,Almdudler,Soft drinks,29,3.6,104.4,FICTIONAL
+2026-10-24,Sat,Aperol Spritz,Cocktails,65,7.5,487.5,FICTIONAL
+2026-10-24,Sat,Cappuccino,Coffee,108,3.8,410.4,FICTIONAL
+2026-10-24,Sat,Espresso,Coffee,118,2.6,306.8,FICTIONAL
+2026-10-24,Sat,Gin Tonic,Cocktails,85,8.9,756.5,FICTIONAL
+2026-10-24,Sat,Grüner Veltliner 1/8 l,Wine,39,4.2,163.8,FICTIONAL
+2026-10-24,Sat,Hugo,Cocktails,67,7.2,482.4,FICTIONAL
+2026-10-24,Sat,Linzer torte,Food,41,4.8,196.8,FICTIONAL
+2026-10-24,Sat,Melange,Coffee,114,3.9,444.6,FICTIONAL
+2026-10-24,Sat,Radler 0.5 l,Beer,79,4.5,355.5,FICTIONAL
+2026-10-24,Sat,Toast,Food,45,5.9,265.5,FICTIONAL
+2026-10-24,Sat,Zwickl beer 0.5 l,Beer,79,4.9,387.1,FICTIONAL
+2026-10-25,Sun,Almdudler,Soft drinks,17,3.6,61.2,FICTIONAL
+2026-10-25,Sun,Aperol Spritz,Cocktails,30,7.5,225.0,FICTIONAL
+2026-10-25,Sun,Cappuccino,Coffee,53,3.8,201.4,FICTIONAL
+2026-10-25,Sun,Espresso,Coffee,64,2.6,166.4,FICTIONAL
+2026-10-25,Sun,Gin Tonic,Cocktails,34,8.9,302.6,FICTIONAL
+2026-10-25,Sun,Grüner Veltliner 1/8 l,Wine,14,4.2,58.8,FICTIONAL
+2026-10-25,Sun,Hugo,Cocktails,28,7.2,201.6,FICTIONAL
+2026-10-25,Sun,Linzer torte,Food,23,4.8,110.4,FICTIONAL
+2026-10-25,Sun,Melange,Coffee,63,3.9,245.7,FICTIONAL
+2026-10-25,Sun,Radler 0.5 l,Beer,42,4.5,189.0,FICTIONAL
+2026-10-25,Sun,Toast,Food,20,5.9,118.0,FICTIONAL
+2026-10-25,Sun,Zwickl beer 0.5 l,Beer,32,4.9,156.8,FICTIONAL

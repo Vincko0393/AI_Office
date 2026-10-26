@@ -1,0 +1,898 @@
+date,day,hour,product,category,units,unit_price_eur,revenue_eur
+2026-10-19,Mon,8,Espresso,Coffee,5,2.6,13.0
+2026-10-19,Mon,8,Melange,Coffee,5,3.9,19.5
+2026-10-19,Mon,8,Cappuccino,Coffee,5,3.8,19.0
+2026-10-19,Mon,8,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-19,Mon,9,Espresso,Coffee,5,2.6,13.0
+2026-10-19,Mon,9,Melange,Coffee,8,3.9,31.2
+2026-10-19,Mon,9,Cappuccino,Coffee,7,3.8,26.6
+2026-10-19,Mon,9,Linzer torte,Food,1,4.8,4.8
+2026-10-19,Mon,9,Toast,Food,1,5.9,5.9
+2026-10-19,Mon,10,Espresso,Coffee,6,2.6,15.6
+2026-10-19,Mon,10,Melange,Coffee,5,3.9,19.5
+2026-10-19,Mon,10,Cappuccino,Coffee,4,3.8,15.2
+2026-10-19,Mon,10,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-19,Mon,10,Linzer torte,Food,1,4.8,4.8
+2026-10-19,Mon,11,Espresso,Coffee,2,2.6,5.2
+2026-10-19,Mon,11,Melange,Coffee,5,3.9,19.5
+2026-10-19,Mon,11,Cappuccino,Coffee,3,3.8,11.4
+2026-10-19,Mon,11,Linzer torte,Food,1,4.8,4.8
+2026-10-19,Mon,11,Toast,Food,2,5.9,11.8
+2026-10-19,Mon,12,Espresso,Coffee,3,2.6,7.8
+2026-10-19,Mon,12,Melange,Coffee,4,3.9,15.6
+2026-10-19,Mon,12,Cappuccino,Coffee,3,3.8,11.4
+2026-10-19,Mon,12,Zwickl beer 0.5 l,Beer,1,4.9,4.9
+2026-10-19,Mon,12,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-19,Mon,12,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-19,Mon,12,Linzer torte,Food,1,4.8,4.8
+2026-10-19,Mon,12,Toast,Food,2,5.9,11.8
+2026-10-19,Mon,13,Espresso,Coffee,4,2.6,10.4
+2026-10-19,Mon,13,Melange,Coffee,7,3.9,27.3
+2026-10-19,Mon,13,Cappuccino,Coffee,2,3.8,7.6
+2026-10-19,Mon,13,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-19,Mon,13,Linzer torte,Food,4,4.8,19.2
+2026-10-19,Mon,13,Toast,Food,1,5.9,5.9
+2026-10-19,Mon,14,Espresso,Coffee,3,2.6,7.8
+2026-10-19,Mon,14,Melange,Coffee,3,3.9,11.7
+2026-10-19,Mon,14,Cappuccino,Coffee,4,3.8,15.2
+2026-10-19,Mon,14,Zwickl beer 0.5 l,Beer,1,4.9,4.9
+2026-10-19,Mon,14,Linzer torte,Food,2,4.8,9.6
+2026-10-19,Mon,14,Toast,Food,2,5.9,11.8
+2026-10-19,Mon,15,Espresso,Coffee,5,2.6,13.0
+2026-10-19,Mon,15,Melange,Coffee,4,3.9,15.6
+2026-10-19,Mon,15,Cappuccino,Coffee,5,3.8,19.0
+2026-10-19,Mon,15,Zwickl beer 0.5 l,Beer,1,4.9,4.9
+2026-10-19,Mon,15,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-19,Mon,15,Almdudler,Soft drinks,2,3.6,7.2
+2026-10-19,Mon,15,Linzer torte,Food,2,4.8,9.6
+2026-10-19,Mon,15,Toast,Food,2,5.9,11.8
+2026-10-19,Mon,16,Espresso,Coffee,3,2.6,7.8
+2026-10-19,Mon,16,Melange,Coffee,4,3.9,15.6
+2026-10-19,Mon,16,Cappuccino,Coffee,2,3.8,7.6
+2026-10-19,Mon,16,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-19,Mon,16,Grüner Veltliner 1/8 l,Wine,1,4.2,4.2
+2026-10-19,Mon,16,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-19,Mon,16,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-19,Mon,16,Linzer torte,Food,1,4.8,4.8
+2026-10-19,Mon,17,Espresso,Coffee,3,2.6,7.8
+2026-10-19,Mon,17,Melange,Coffee,2,3.9,7.8
+2026-10-19,Mon,17,Cappuccino,Coffee,2,3.8,7.6
+2026-10-19,Mon,17,Zwickl beer 0.5 l,Beer,1,4.9,4.9
+2026-10-19,Mon,17,Radler 0.5 l,Beer,3,4.5,13.5
+2026-10-19,Mon,17,Grüner Veltliner 1/8 l,Wine,1,4.2,4.2
+2026-10-19,Mon,17,Aperol Spritz,Cocktails,1,7.5,7.5
+2026-10-19,Mon,17,Hugo,Cocktails,2,7.2,14.4
+2026-10-19,Mon,17,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-19,Mon,18,Espresso,Coffee,2,2.6,5.2
+2026-10-19,Mon,18,Melange,Coffee,2,3.9,7.8
+2026-10-19,Mon,18,Cappuccino,Coffee,2,3.8,7.6
+2026-10-19,Mon,18,Zwickl beer 0.5 l,Beer,5,4.9,24.5
+2026-10-19,Mon,18,Radler 0.5 l,Beer,2,4.5,9.0
+2026-10-19,Mon,18,Grüner Veltliner 1/8 l,Wine,2,4.2,8.4
+2026-10-19,Mon,18,Aperol Spritz,Cocktails,2,7.5,15.0
+2026-10-19,Mon,18,Hugo,Cocktails,2,7.2,14.4
+2026-10-19,Mon,18,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-19,Mon,18,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-19,Mon,18,Linzer torte,Food,1,4.8,4.8
+2026-10-19,Mon,18,Toast,Food,1,5.9,5.9
+2026-10-19,Mon,19,Espresso,Coffee,1,2.6,2.6
+2026-10-19,Mon,19,Zwickl beer 0.5 l,Beer,5,4.9,24.5
+2026-10-19,Mon,19,Radler 0.5 l,Beer,5,4.5,22.5
+2026-10-19,Mon,19,Hugo,Cocktails,2,7.2,14.4
+2026-10-19,Mon,19,Gin Tonic,Cocktails,3,8.9,26.7
+2026-10-19,Mon,19,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-19,Mon,19,Linzer torte,Food,1,4.8,4.8
+2026-10-19,Mon,20,Espresso,Coffee,1,2.6,2.6
+2026-10-19,Mon,20,Melange,Coffee,1,3.9,3.9
+2026-10-19,Mon,20,Zwickl beer 0.5 l,Beer,5,4.9,24.5
+2026-10-19,Mon,20,Radler 0.5 l,Beer,4,4.5,18.0
+2026-10-19,Mon,20,Grüner Veltliner 1/8 l,Wine,3,4.2,12.6
+2026-10-19,Mon,20,Aperol Spritz,Cocktails,5,7.5,37.5
+2026-10-19,Mon,20,Hugo,Cocktails,5,7.2,36.0
+2026-10-19,Mon,20,Gin Tonic,Cocktails,5,8.9,44.5
+2026-10-19,Mon,20,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-19,Mon,21,Zwickl beer 0.5 l,Beer,3,4.9,14.7
+2026-10-19,Mon,21,Radler 0.5 l,Beer,5,4.5,22.5
+2026-10-19,Mon,21,Grüner Veltliner 1/8 l,Wine,2,4.2,8.4
+2026-10-19,Mon,21,Aperol Spritz,Cocktails,4,7.5,30.0
+2026-10-19,Mon,21,Hugo,Cocktails,2,7.2,14.4
+2026-10-19,Mon,21,Gin Tonic,Cocktails,5,8.9,44.5
+2026-10-19,Mon,22,Zwickl beer 0.5 l,Beer,2,4.9,9.8
+2026-10-19,Mon,22,Radler 0.5 l,Beer,3,4.5,13.5
+2026-10-19,Mon,22,Grüner Veltliner 1/8 l,Wine,1,4.2,4.2
+2026-10-19,Mon,22,Aperol Spritz,Cocktails,4,7.5,30.0
+2026-10-19,Mon,22,Hugo,Cocktails,3,7.2,21.6
+2026-10-19,Mon,22,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-19,Mon,23,Zwickl beer 0.5 l,Beer,2,4.9,9.8
+2026-10-19,Mon,23,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-19,Mon,23,Grüner Veltliner 1/8 l,Wine,1,4.2,4.2
+2026-10-19,Mon,23,Aperol Spritz,Cocktails,2,7.5,15.0
+2026-10-19,Mon,23,Hugo,Cocktails,3,7.2,21.6
+2026-10-19,Mon,23,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-19,Mon,23,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-20,Tue,8,Espresso,Coffee,6,2.6,15.6
+2026-10-20,Tue,8,Melange,Coffee,3,3.9,11.7
+2026-10-20,Tue,8,Cappuccino,Coffee,5,3.8,19.0
+2026-10-20,Tue,8,Linzer torte,Food,2,4.8,9.6
+2026-10-20,Tue,8,Toast,Food,1,5.9,5.9
+2026-10-20,Tue,9,Espresso,Coffee,4,2.6,10.4
+2026-10-20,Tue,9,Melange,Coffee,8,3.9,31.2
+2026-10-20,Tue,9,Cappuccino,Coffee,2,3.8,7.6
+2026-10-20,Tue,9,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-20,Tue,9,Linzer torte,Food,1,4.8,4.8
+2026-10-20,Tue,9,Toast,Food,2,5.9,11.8
+2026-10-20,Tue,10,Espresso,Coffee,6,2.6,15.6
+2026-10-20,Tue,10,Melange,Coffee,3,3.9,11.7
+2026-10-20,Tue,10,Cappuccino,Coffee,5,3.8,19.0
+2026-10-20,Tue,10,Linzer torte,Food,1,4.8,4.8
+2026-10-20,Tue,10,Toast,Food,1,5.9,5.9
+2026-10-20,Tue,11,Espresso,Coffee,4,2.6,10.4
+2026-10-20,Tue,11,Melange,Coffee,3,3.9,11.7
+2026-10-20,Tue,11,Cappuccino,Coffee,3,3.8,11.4
+2026-10-20,Tue,11,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-20,Tue,11,Toast,Food,1,5.9,5.9
+2026-10-20,Tue,12,Espresso,Coffee,2,2.6,5.2
+2026-10-20,Tue,12,Melange,Coffee,2,3.9,7.8
+2026-10-20,Tue,12,Cappuccino,Coffee,3,3.8,11.4
+2026-10-20,Tue,12,Zwickl beer 0.5 l,Beer,1,4.9,4.9
+2026-10-20,Tue,12,Linzer torte,Food,3,4.8,14.4
+2026-10-20,Tue,12,Toast,Food,1,5.9,5.9
+2026-10-20,Tue,13,Espresso,Coffee,2,2.6,5.2
+2026-10-20,Tue,13,Melange,Coffee,3,3.9,11.7
+2026-10-20,Tue,13,Cappuccino,Coffee,3,3.8,11.4
+2026-10-20,Tue,13,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-20,Tue,13,Linzer torte,Food,1,4.8,4.8
+2026-10-20,Tue,13,Toast,Food,2,5.9,11.8
+2026-10-20,Tue,14,Espresso,Coffee,5,2.6,13.0
+2026-10-20,Tue,14,Melange,Coffee,4,3.9,15.6
+2026-10-20,Tue,14,Cappuccino,Coffee,6,3.8,22.8
+2026-10-20,Tue,14,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-20,Tue,14,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-20,Tue,14,Linzer torte,Food,2,4.8,9.6
+2026-10-20,Tue,14,Toast,Food,1,5.9,5.9
+2026-10-20,Tue,15,Espresso,Coffee,3,2.6,7.8
+2026-10-20,Tue,15,Melange,Coffee,2,3.9,7.8
+2026-10-20,Tue,15,Cappuccino,Coffee,6,3.8,22.8
+2026-10-20,Tue,15,Hugo,Cocktails,1,7.2,7.2
+2026-10-20,Tue,15,Linzer torte,Food,2,4.8,9.6
+2026-10-20,Tue,15,Toast,Food,1,5.9,5.9
+2026-10-20,Tue,16,Espresso,Coffee,2,2.6,5.2
+2026-10-20,Tue,16,Melange,Coffee,3,3.9,11.7
+2026-10-20,Tue,16,Cappuccino,Coffee,5,3.8,19.0
+2026-10-20,Tue,16,Zwickl beer 0.5 l,Beer,2,4.9,9.8
+2026-10-20,Tue,16,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-20,Tue,16,Hugo,Cocktails,1,7.2,7.2
+2026-10-20,Tue,16,Gin Tonic,Cocktails,2,8.9,17.8
+2026-10-20,Tue,16,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-20,Tue,16,Linzer torte,Food,1,4.8,4.8
+2026-10-20,Tue,16,Toast,Food,2,5.9,11.8
+2026-10-20,Tue,17,Espresso,Coffee,2,2.6,5.2
+2026-10-20,Tue,17,Melange,Coffee,3,3.9,11.7
+2026-10-20,Tue,17,Cappuccino,Coffee,1,3.8,3.8
+2026-10-20,Tue,17,Zwickl beer 0.5 l,Beer,3,4.9,14.7
+2026-10-20,Tue,17,Radler 0.5 l,Beer,3,4.5,13.5
+2026-10-20,Tue,17,Grüner Veltliner 1/8 l,Wine,1,4.2,4.2
+2026-10-20,Tue,17,Aperol Spritz,Cocktails,2,7.5,15.0
+2026-10-20,Tue,17,Hugo,Cocktails,2,7.2,14.4
+2026-10-20,Tue,17,Gin Tonic,Cocktails,2,8.9,17.8
+2026-10-20,Tue,17,Almdudler,Soft drinks,2,3.6,7.2
+2026-10-20,Tue,17,Toast,Food,1,5.9,5.9
+2026-10-20,Tue,18,Espresso,Coffee,3,2.6,7.8
+2026-10-20,Tue,18,Zwickl beer 0.5 l,Beer,2,4.9,9.8
+2026-10-20,Tue,18,Radler 0.5 l,Beer,2,4.5,9.0
+2026-10-20,Tue,18,Grüner Veltliner 1/8 l,Wine,2,4.2,8.4
+2026-10-20,Tue,18,Aperol Spritz,Cocktails,2,7.5,15.0
+2026-10-20,Tue,18,Hugo,Cocktails,1,7.2,7.2
+2026-10-20,Tue,18,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-20,Tue,18,Linzer torte,Food,1,4.8,4.8
+2026-10-20,Tue,19,Espresso,Coffee,1,2.6,2.6
+2026-10-20,Tue,19,Melange,Coffee,1,3.9,3.9
+2026-10-20,Tue,19,Zwickl beer 0.5 l,Beer,7,4.9,34.3
+2026-10-20,Tue,19,Radler 0.5 l,Beer,4,4.5,18.0
+2026-10-20,Tue,19,Aperol Spritz,Cocktails,4,7.5,30.0
+2026-10-20,Tue,19,Hugo,Cocktails,1,7.2,7.2
+2026-10-20,Tue,19,Gin Tonic,Cocktails,3,8.9,26.7
+2026-10-20,Tue,19,Linzer torte,Food,1,4.8,4.8
+2026-10-20,Tue,19,Toast,Food,1,5.9,5.9
+2026-10-20,Tue,20,Espresso,Coffee,1,2.6,2.6
+2026-10-20,Tue,20,Zwickl beer 0.5 l,Beer,7,4.9,34.3
+2026-10-20,Tue,20,Radler 0.5 l,Beer,6,4.5,27.0
+2026-10-20,Tue,20,Grüner Veltliner 1/8 l,Wine,3,4.2,12.6
+2026-10-20,Tue,20,Aperol Spritz,Cocktails,5,7.5,37.5
+2026-10-20,Tue,20,Hugo,Cocktails,6,7.2,43.2
+2026-10-20,Tue,20,Gin Tonic,Cocktails,3,8.9,26.7
+2026-10-20,Tue,21,Zwickl beer 0.5 l,Beer,4,4.9,19.6
+2026-10-20,Tue,21,Radler 0.5 l,Beer,7,4.5,31.5
+2026-10-20,Tue,21,Grüner Veltliner 1/8 l,Wine,2,4.2,8.4
+2026-10-20,Tue,21,Aperol Spritz,Cocktails,3,7.5,22.5
+2026-10-20,Tue,21,Hugo,Cocktails,2,7.2,14.4
+2026-10-20,Tue,21,Gin Tonic,Cocktails,4,8.9,35.6
+2026-10-20,Tue,21,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-20,Tue,22,Zwickl beer 0.5 l,Beer,4,4.9,19.6
+2026-10-20,Tue,22,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-20,Tue,22,Grüner Veltliner 1/8 l,Wine,1,4.2,4.2
+2026-10-20,Tue,22,Aperol Spritz,Cocktails,4,7.5,30.0
+2026-10-20,Tue,22,Hugo,Cocktails,4,7.2,28.8
+2026-10-20,Tue,22,Gin Tonic,Cocktails,5,8.9,44.5
+2026-10-20,Tue,23,Zwickl beer 0.5 l,Beer,3,4.9,14.7
+2026-10-20,Tue,23,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-20,Tue,23,Grüner Veltliner 1/8 l,Wine,1,4.2,4.2
+2026-10-20,Tue,23,Aperol Spritz,Cocktails,1,7.5,7.5
+2026-10-20,Tue,23,Hugo,Cocktails,1,7.2,7.2
+2026-10-20,Tue,23,Gin Tonic,Cocktails,2,8.9,17.8
+2026-10-21,Wed,8,Espresso,Coffee,5,2.6,13.0
+2026-10-21,Wed,8,Melange,Coffee,6,3.9,23.4
+2026-10-21,Wed,8,Cappuccino,Coffee,8,3.8,30.4
+2026-10-21,Wed,8,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-21,Wed,8,Linzer torte,Food,1,4.8,4.8
+2026-10-21,Wed,8,Toast,Food,1,5.9,5.9
+2026-10-21,Wed,9,Espresso,Coffee,5,2.6,13.0
+2026-10-21,Wed,9,Melange,Coffee,9,3.9,35.1
+2026-10-21,Wed,9,Cappuccino,Coffee,8,3.8,30.4
+2026-10-21,Wed,9,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-21,Wed,9,Linzer torte,Food,1,4.8,4.8
+2026-10-21,Wed,9,Toast,Food,3,5.9,17.7
+2026-10-21,Wed,10,Espresso,Coffee,8,2.6,20.8
+2026-10-21,Wed,10,Melange,Coffee,5,3.9,19.5
+2026-10-21,Wed,10,Cappuccino,Coffee,5,3.8,19.0
+2026-10-21,Wed,10,Linzer torte,Food,1,4.8,4.8
+2026-10-21,Wed,10,Toast,Food,1,5.9,5.9
+2026-10-21,Wed,11,Espresso,Coffee,5,2.6,13.0
+2026-10-21,Wed,11,Melange,Coffee,5,3.9,19.5
+2026-10-21,Wed,11,Cappuccino,Coffee,1,3.8,3.8
+2026-10-21,Wed,11,Linzer torte,Food,3,4.8,14.4
+2026-10-21,Wed,11,Toast,Food,2,5.9,11.8
+2026-10-21,Wed,12,Espresso,Coffee,4,2.6,10.4
+2026-10-21,Wed,12,Melange,Coffee,2,3.9,7.8
+2026-10-21,Wed,12,Cappuccino,Coffee,4,3.8,15.2
+2026-10-21,Wed,12,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-21,Wed,12,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-21,Wed,12,Linzer torte,Food,3,4.8,14.4
+2026-10-21,Wed,12,Toast,Food,4,5.9,23.6
+2026-10-21,Wed,13,Espresso,Coffee,4,2.6,10.4
+2026-10-21,Wed,13,Melange,Coffee,2,3.9,7.8
+2026-10-21,Wed,13,Cappuccino,Coffee,5,3.8,19.0
+2026-10-21,Wed,13,Zwickl beer 0.5 l,Beer,1,4.9,4.9
+2026-10-21,Wed,13,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-21,Wed,13,Linzer torte,Food,2,4.8,9.6
+2026-10-21,Wed,13,Toast,Food,2,5.9,11.8
+2026-10-21,Wed,14,Espresso,Coffee,7,2.6,18.2
+2026-10-21,Wed,14,Melange,Coffee,5,3.9,19.5
+2026-10-21,Wed,14,Cappuccino,Coffee,3,3.8,11.4
+2026-10-21,Wed,14,Hugo,Cocktails,1,7.2,7.2
+2026-10-21,Wed,14,Linzer torte,Food,3,4.8,14.4
+2026-10-21,Wed,14,Toast,Food,2,5.9,11.8
+2026-10-21,Wed,15,Espresso,Coffee,8,2.6,20.8
+2026-10-21,Wed,15,Melange,Coffee,7,3.9,27.3
+2026-10-21,Wed,15,Cappuccino,Coffee,4,3.8,15.2
+2026-10-21,Wed,15,Radler 0.5 l,Beer,2,4.5,9.0
+2026-10-21,Wed,15,Aperol Spritz,Cocktails,1,7.5,7.5
+2026-10-21,Wed,15,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-21,Wed,15,Linzer torte,Food,2,4.8,9.6
+2026-10-21,Wed,15,Toast,Food,2,5.9,11.8
+2026-10-21,Wed,16,Espresso,Coffee,4,2.6,10.4
+2026-10-21,Wed,16,Melange,Coffee,4,3.9,15.6
+2026-10-21,Wed,16,Cappuccino,Coffee,3,3.8,11.4
+2026-10-21,Wed,16,Aperol Spritz,Cocktails,1,7.5,7.5
+2026-10-21,Wed,16,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-21,Wed,16,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-21,Wed,16,Linzer torte,Food,3,4.8,14.4
+2026-10-21,Wed,16,Toast,Food,2,5.9,11.8
+2026-10-21,Wed,17,Espresso,Coffee,2,2.6,5.2
+2026-10-21,Wed,17,Melange,Coffee,4,3.9,15.6
+2026-10-21,Wed,17,Cappuccino,Coffee,2,3.8,7.6
+2026-10-21,Wed,17,Zwickl beer 0.5 l,Beer,2,4.9,9.8
+2026-10-21,Wed,17,Radler 0.5 l,Beer,4,4.5,18.0
+2026-10-21,Wed,17,Grüner Veltliner 1/8 l,Wine,1,4.2,4.2
+2026-10-21,Wed,17,Aperol Spritz,Cocktails,2,7.5,15.0
+2026-10-21,Wed,17,Hugo,Cocktails,2,7.2,14.4
+2026-10-21,Wed,17,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-21,Wed,17,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-21,Wed,17,Linzer torte,Food,2,4.8,9.6
+2026-10-21,Wed,17,Toast,Food,1,5.9,5.9
+2026-10-21,Wed,18,Espresso,Coffee,1,2.6,2.6
+2026-10-21,Wed,18,Melange,Coffee,2,3.9,7.8
+2026-10-21,Wed,18,Cappuccino,Coffee,1,3.8,3.8
+2026-10-21,Wed,18,Zwickl beer 0.5 l,Beer,4,4.9,19.6
+2026-10-21,Wed,18,Radler 0.5 l,Beer,2,4.5,9.0
+2026-10-21,Wed,18,Grüner Veltliner 1/8 l,Wine,1,4.2,4.2
+2026-10-21,Wed,18,Aperol Spritz,Cocktails,2,7.5,15.0
+2026-10-21,Wed,18,Hugo,Cocktails,1,7.2,7.2
+2026-10-21,Wed,18,Gin Tonic,Cocktails,3,8.9,26.7
+2026-10-21,Wed,19,Espresso,Coffee,1,2.6,2.6
+2026-10-21,Wed,19,Melange,Coffee,2,3.9,7.8
+2026-10-21,Wed,19,Cappuccino,Coffee,1,3.8,3.8
+2026-10-21,Wed,19,Zwickl beer 0.5 l,Beer,3,4.9,14.7
+2026-10-21,Wed,19,Radler 0.5 l,Beer,7,4.5,31.5
+2026-10-21,Wed,19,Grüner Veltliner 1/8 l,Wine,3,4.2,12.6
+2026-10-21,Wed,19,Aperol Spritz,Cocktails,5,7.5,37.5
+2026-10-21,Wed,19,Hugo,Cocktails,4,7.2,28.8
+2026-10-21,Wed,19,Gin Tonic,Cocktails,4,8.9,35.6
+2026-10-21,Wed,19,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-21,Wed,19,Linzer torte,Food,1,4.8,4.8
+2026-10-21,Wed,20,Espresso,Coffee,1,2.6,2.6
+2026-10-21,Wed,20,Melange,Coffee,1,3.9,3.9
+2026-10-21,Wed,20,Cappuccino,Coffee,2,3.8,7.6
+2026-10-21,Wed,20,Zwickl beer 0.5 l,Beer,3,4.9,14.7
+2026-10-21,Wed,20,Radler 0.5 l,Beer,6,4.5,27.0
+2026-10-21,Wed,20,Grüner Veltliner 1/8 l,Wine,2,4.2,8.4
+2026-10-21,Wed,20,Aperol Spritz,Cocktails,3,7.5,22.5
+2026-10-21,Wed,20,Hugo,Cocktails,5,7.2,36.0
+2026-10-21,Wed,20,Gin Tonic,Cocktails,5,8.9,44.5
+2026-10-21,Wed,20,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-21,Wed,20,Linzer torte,Food,1,4.8,4.8
+2026-10-21,Wed,20,Toast,Food,1,5.9,5.9
+2026-10-21,Wed,21,Cappuccino,Coffee,1,3.8,3.8
+2026-10-21,Wed,21,Zwickl beer 0.5 l,Beer,6,4.9,29.4
+2026-10-21,Wed,21,Radler 0.5 l,Beer,7,4.5,31.5
+2026-10-21,Wed,21,Grüner Veltliner 1/8 l,Wine,2,4.2,8.4
+2026-10-21,Wed,21,Aperol Spritz,Cocktails,3,7.5,22.5
+2026-10-21,Wed,21,Hugo,Cocktails,4,7.2,28.8
+2026-10-21,Wed,21,Gin Tonic,Cocktails,3,8.9,26.7
+2026-10-21,Wed,21,Linzer torte,Food,1,4.8,4.8
+2026-10-21,Wed,22,Zwickl beer 0.5 l,Beer,4,4.9,19.6
+2026-10-21,Wed,22,Radler 0.5 l,Beer,4,4.5,18.0
+2026-10-21,Wed,22,Grüner Veltliner 1/8 l,Wine,2,4.2,8.4
+2026-10-21,Wed,22,Aperol Spritz,Cocktails,5,7.5,37.5
+2026-10-21,Wed,22,Hugo,Cocktails,3,7.2,21.6
+2026-10-21,Wed,22,Gin Tonic,Cocktails,2,8.9,17.8
+2026-10-21,Wed,23,Zwickl beer 0.5 l,Beer,2,4.9,9.8
+2026-10-21,Wed,23,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-21,Wed,23,Grüner Veltliner 1/8 l,Wine,1,4.2,4.2
+2026-10-21,Wed,23,Aperol Spritz,Cocktails,2,7.5,15.0
+2026-10-21,Wed,23,Gin Tonic,Cocktails,2,8.9,17.8
+2026-10-21,Wed,23,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-22,Thu,8,Espresso,Coffee,8,2.6,20.8
+2026-10-22,Thu,8,Melange,Coffee,7,3.9,27.3
+2026-10-22,Thu,8,Cappuccino,Coffee,6,3.8,22.8
+2026-10-22,Thu,8,Linzer torte,Food,1,4.8,4.8
+2026-10-22,Thu,8,Toast,Food,1,5.9,5.9
+2026-10-22,Thu,9,Espresso,Coffee,10,2.6,26.0
+2026-10-22,Thu,9,Melange,Coffee,8,3.9,31.2
+2026-10-22,Thu,9,Cappuccino,Coffee,16,3.8,60.8
+2026-10-22,Thu,9,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-22,Thu,9,Linzer torte,Food,1,4.8,4.8
+2026-10-22,Thu,9,Toast,Food,4,5.9,23.6
+2026-10-22,Thu,10,Espresso,Coffee,11,2.6,28.6
+2026-10-22,Thu,10,Melange,Coffee,8,3.9,31.2
+2026-10-22,Thu,10,Cappuccino,Coffee,5,3.8,19.0
+2026-10-22,Thu,10,Linzer torte,Food,1,4.8,4.8
+2026-10-22,Thu,10,Toast,Food,1,5.9,5.9
+2026-10-22,Thu,11,Espresso,Coffee,2,2.6,5.2
+2026-10-22,Thu,11,Melange,Coffee,5,3.9,19.5
+2026-10-22,Thu,11,Cappuccino,Coffee,5,3.8,19.0
+2026-10-22,Thu,11,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-22,Thu,11,Linzer torte,Food,3,4.8,14.4
+2026-10-22,Thu,11,Toast,Food,3,5.9,17.7
+2026-10-22,Thu,12,Espresso,Coffee,4,2.6,10.4
+2026-10-22,Thu,12,Melange,Coffee,7,3.9,27.3
+2026-10-22,Thu,12,Cappuccino,Coffee,5,3.8,19.0
+2026-10-22,Thu,12,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-22,Thu,12,Aperol Spritz,Cocktails,1,7.5,7.5
+2026-10-22,Thu,12,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-22,Thu,12,Almdudler,Soft drinks,2,3.6,7.2
+2026-10-22,Thu,12,Linzer torte,Food,1,4.8,4.8
+2026-10-22,Thu,12,Toast,Food,2,5.9,11.8
+2026-10-22,Thu,13,Espresso,Coffee,8,2.6,20.8
+2026-10-22,Thu,13,Melange,Coffee,6,3.9,23.4
+2026-10-22,Thu,13,Cappuccino,Coffee,5,3.8,19.0
+2026-10-22,Thu,13,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-22,Thu,13,Almdudler,Soft drinks,2,3.6,7.2
+2026-10-22,Thu,13,Linzer torte,Food,2,4.8,9.6
+2026-10-22,Thu,13,Toast,Food,2,5.9,11.8
+2026-10-22,Thu,14,Espresso,Coffee,7,2.6,18.2
+2026-10-22,Thu,14,Melange,Coffee,9,3.9,35.1
+2026-10-22,Thu,14,Cappuccino,Coffee,4,3.8,15.2
+2026-10-22,Thu,14,Hugo,Cocktails,1,7.2,7.2
+2026-10-22,Thu,14,Almdudler,Soft drinks,2,3.6,7.2
+2026-10-22,Thu,14,Linzer torte,Food,2,4.8,9.6
+2026-10-22,Thu,14,Toast,Food,2,5.9,11.8
+2026-10-22,Thu,15,Espresso,Coffee,9,2.6,23.4
+2026-10-22,Thu,15,Melange,Coffee,10,3.9,39.0
+2026-10-22,Thu,15,Cappuccino,Coffee,9,3.8,34.2
+2026-10-22,Thu,15,Zwickl beer 0.5 l,Beer,1,4.9,4.9
+2026-10-22,Thu,15,Radler 0.5 l,Beer,2,4.5,9.0
+2026-10-22,Thu,15,Aperol Spritz,Cocktails,1,7.5,7.5
+2026-10-22,Thu,15,Hugo,Cocktails,1,7.2,7.2
+2026-10-22,Thu,15,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-22,Thu,15,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-22,Thu,15,Linzer torte,Food,3,4.8,14.4
+2026-10-22,Thu,15,Toast,Food,3,5.9,17.7
+2026-10-22,Thu,16,Espresso,Coffee,4,2.6,10.4
+2026-10-22,Thu,16,Melange,Coffee,4,3.9,15.6
+2026-10-22,Thu,16,Cappuccino,Coffee,2,3.8,7.6
+2026-10-22,Thu,16,Zwickl beer 0.5 l,Beer,4,4.9,19.6
+2026-10-22,Thu,16,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-22,Thu,16,Grüner Veltliner 1/8 l,Wine,1,4.2,4.2
+2026-10-22,Thu,16,Aperol Spritz,Cocktails,1,7.5,7.5
+2026-10-22,Thu,16,Hugo,Cocktails,2,7.2,14.4
+2026-10-22,Thu,16,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-22,Thu,16,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-22,Thu,16,Linzer torte,Food,1,4.8,4.8
+2026-10-22,Thu,17,Espresso,Coffee,4,2.6,10.4
+2026-10-22,Thu,17,Melange,Coffee,2,3.9,7.8
+2026-10-22,Thu,17,Cappuccino,Coffee,3,3.8,11.4
+2026-10-22,Thu,17,Zwickl beer 0.5 l,Beer,3,4.9,14.7
+2026-10-22,Thu,17,Radler 0.5 l,Beer,4,4.5,18.0
+2026-10-22,Thu,17,Grüner Veltliner 1/8 l,Wine,1,4.2,4.2
+2026-10-22,Thu,17,Aperol Spritz,Cocktails,3,7.5,22.5
+2026-10-22,Thu,17,Hugo,Cocktails,2,7.2,14.4
+2026-10-22,Thu,17,Gin Tonic,Cocktails,2,8.9,17.8
+2026-10-22,Thu,17,Almdudler,Soft drinks,2,3.6,7.2
+2026-10-22,Thu,17,Linzer torte,Food,2,4.8,9.6
+2026-10-22,Thu,18,Espresso,Coffee,2,2.6,5.2
+2026-10-22,Thu,18,Melange,Coffee,2,3.9,7.8
+2026-10-22,Thu,18,Cappuccino,Coffee,3,3.8,11.4
+2026-10-22,Thu,18,Zwickl beer 0.5 l,Beer,4,4.9,19.6
+2026-10-22,Thu,18,Radler 0.5 l,Beer,4,4.5,18.0
+2026-10-22,Thu,18,Grüner Veltliner 1/8 l,Wine,2,4.2,8.4
+2026-10-22,Thu,18,Aperol Spritz,Cocktails,2,7.5,15.0
+2026-10-22,Thu,18,Hugo,Cocktails,5,7.2,36.0
+2026-10-22,Thu,18,Gin Tonic,Cocktails,5,8.9,44.5
+2026-10-22,Thu,18,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-22,Thu,18,Linzer torte,Food,1,4.8,4.8
+2026-10-22,Thu,18,Toast,Food,1,5.9,5.9
+2026-10-22,Thu,19,Espresso,Coffee,1,2.6,2.6
+2026-10-22,Thu,19,Melange,Coffee,1,3.9,3.9
+2026-10-22,Thu,19,Cappuccino,Coffee,1,3.8,3.8
+2026-10-22,Thu,19,Zwickl beer 0.5 l,Beer,9,4.9,44.1
+2026-10-22,Thu,19,Radler 0.5 l,Beer,6,4.5,27.0
+2026-10-22,Thu,19,Grüner Veltliner 1/8 l,Wine,3,4.2,12.6
+2026-10-22,Thu,19,Aperol Spritz,Cocktails,6,7.5,45.0
+2026-10-22,Thu,19,Hugo,Cocktails,7,7.2,50.4
+2026-10-22,Thu,19,Gin Tonic,Cocktails,8,8.9,71.2
+2026-10-22,Thu,20,Espresso,Coffee,1,2.6,2.6
+2026-10-22,Thu,20,Zwickl beer 0.5 l,Beer,7,4.9,34.3
+2026-10-22,Thu,20,Radler 0.5 l,Beer,5,4.5,22.5
+2026-10-22,Thu,20,Grüner Veltliner 1/8 l,Wine,2,4.2,8.4
+2026-10-22,Thu,20,Aperol Spritz,Cocktails,6,7.5,45.0
+2026-10-22,Thu,20,Hugo,Cocktails,5,7.2,36.0
+2026-10-22,Thu,20,Gin Tonic,Cocktails,4,8.9,35.6
+2026-10-22,Thu,20,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-22,Thu,20,Toast,Food,1,5.9,5.9
+2026-10-22,Thu,21,Espresso,Coffee,1,2.6,2.6
+2026-10-22,Thu,21,Cappuccino,Coffee,1,3.8,3.8
+2026-10-22,Thu,21,Zwickl beer 0.5 l,Beer,5,4.9,24.5
+2026-10-22,Thu,21,Radler 0.5 l,Beer,10,4.5,45.0
+2026-10-22,Thu,21,Grüner Veltliner 1/8 l,Wine,2,4.2,8.4
+2026-10-22,Thu,21,Aperol Spritz,Cocktails,7,7.5,52.5
+2026-10-22,Thu,21,Hugo,Cocktails,5,7.2,36.0
+2026-10-22,Thu,21,Gin Tonic,Cocktails,7,8.9,62.3
+2026-10-22,Thu,21,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-22,Thu,21,Linzer torte,Food,1,4.8,4.8
+2026-10-22,Thu,21,Toast,Food,1,5.9,5.9
+2026-10-22,Thu,22,Zwickl beer 0.5 l,Beer,7,4.9,34.3
+2026-10-22,Thu,22,Radler 0.5 l,Beer,8,4.5,36.0
+2026-10-22,Thu,22,Grüner Veltliner 1/8 l,Wine,2,4.2,8.4
+2026-10-22,Thu,22,Aperol Spritz,Cocktails,1,7.5,7.5
+2026-10-22,Thu,22,Hugo,Cocktails,2,7.2,14.4
+2026-10-22,Thu,22,Gin Tonic,Cocktails,4,8.9,35.6
+2026-10-22,Thu,23,Zwickl beer 0.5 l,Beer,3,4.9,14.7
+2026-10-22,Thu,23,Radler 0.5 l,Beer,3,4.5,13.5
+2026-10-22,Thu,23,Grüner Veltliner 1/8 l,Wine,2,4.2,8.4
+2026-10-22,Thu,23,Aperol Spritz,Cocktails,1,7.5,7.5
+2026-10-22,Thu,23,Hugo,Cocktails,3,7.2,21.6
+2026-10-22,Thu,23,Gin Tonic,Cocktails,3,8.9,26.7
+2026-10-22,Thu,23,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-23,Fri,8,Espresso,Coffee,12,2.6,31.2
+2026-10-23,Fri,8,Melange,Coffee,9,3.9,35.1
+2026-10-23,Fri,8,Cappuccino,Coffee,10,3.8,38.0
+2026-10-23,Fri,8,Almdudler,Soft drinks,2,3.6,7.2
+2026-10-23,Fri,8,Linzer torte,Food,1,4.8,4.8
+2026-10-23,Fri,8,Toast,Food,3,5.9,17.7
+2026-10-23,Fri,9,Espresso,Coffee,13,2.6,33.8
+2026-10-23,Fri,9,Melange,Coffee,14,3.9,54.6
+2026-10-23,Fri,9,Cappuccino,Coffee,13,3.8,49.4
+2026-10-23,Fri,9,Almdudler,Soft drinks,2,3.6,7.2
+2026-10-23,Fri,9,Linzer torte,Food,2,4.8,9.6
+2026-10-23,Fri,9,Toast,Food,7,5.9,41.3
+2026-10-23,Fri,10,Espresso,Coffee,14,2.6,36.4
+2026-10-23,Fri,10,Melange,Coffee,12,3.9,46.8
+2026-10-23,Fri,10,Cappuccino,Coffee,16,3.8,60.8
+2026-10-23,Fri,10,Almdudler,Soft drinks,2,3.6,7.2
+2026-10-23,Fri,10,Linzer torte,Food,4,4.8,19.2
+2026-10-23,Fri,10,Toast,Food,4,5.9,23.6
+2026-10-23,Fri,11,Espresso,Coffee,9,2.6,23.4
+2026-10-23,Fri,11,Melange,Coffee,11,3.9,42.9
+2026-10-23,Fri,11,Cappuccino,Coffee,8,3.8,30.4
+2026-10-23,Fri,11,Aperol Spritz,Cocktails,1,7.5,7.5
+2026-10-23,Fri,11,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-23,Fri,11,Linzer torte,Food,4,4.8,19.2
+2026-10-23,Fri,11,Toast,Food,5,5.9,29.5
+2026-10-23,Fri,12,Espresso,Coffee,8,2.6,20.8
+2026-10-23,Fri,12,Melange,Coffee,5,3.9,19.5
+2026-10-23,Fri,12,Cappuccino,Coffee,8,3.8,30.4
+2026-10-23,Fri,12,Aperol Spritz,Cocktails,1,7.5,7.5
+2026-10-23,Fri,12,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-23,Fri,12,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-23,Fri,12,Linzer torte,Food,4,4.8,19.2
+2026-10-23,Fri,12,Toast,Food,3,5.9,17.7
+2026-10-23,Fri,13,Espresso,Coffee,7,2.6,18.2
+2026-10-23,Fri,13,Melange,Coffee,10,3.9,39.0
+2026-10-23,Fri,13,Cappuccino,Coffee,6,3.8,22.8
+2026-10-23,Fri,13,Gin Tonic,Cocktails,2,8.9,17.8
+2026-10-23,Fri,13,Almdudler,Soft drinks,3,3.6,10.8
+2026-10-23,Fri,13,Linzer torte,Food,7,4.8,33.6
+2026-10-23,Fri,13,Toast,Food,4,5.9,23.6
+2026-10-23,Fri,14,Espresso,Coffee,11,2.6,28.6
+2026-10-23,Fri,14,Melange,Coffee,10,3.9,39.0
+2026-10-23,Fri,14,Cappuccino,Coffee,11,3.8,41.8
+2026-10-23,Fri,14,Aperol Spritz,Cocktails,1,7.5,7.5
+2026-10-23,Fri,14,Hugo,Cocktails,1,7.2,7.2
+2026-10-23,Fri,14,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-23,Fri,14,Almdudler,Soft drinks,3,3.6,10.8
+2026-10-23,Fri,14,Linzer torte,Food,3,4.8,14.4
+2026-10-23,Fri,14,Toast,Food,1,5.9,5.9
+2026-10-23,Fri,15,Espresso,Coffee,12,2.6,31.2
+2026-10-23,Fri,15,Melange,Coffee,15,3.9,58.5
+2026-10-23,Fri,15,Cappuccino,Coffee,11,3.8,41.8
+2026-10-23,Fri,15,Zwickl beer 0.5 l,Beer,1,4.9,4.9
+2026-10-23,Fri,15,Grüner Veltliner 1/8 l,Wine,1,4.2,4.2
+2026-10-23,Fri,15,Aperol Spritz,Cocktails,2,7.5,15.0
+2026-10-23,Fri,15,Hugo,Cocktails,1,7.2,7.2
+2026-10-23,Fri,15,Gin Tonic,Cocktails,3,8.9,26.7
+2026-10-23,Fri,15,Almdudler,Soft drinks,3,3.6,10.8
+2026-10-23,Fri,15,Linzer torte,Food,3,4.8,14.4
+2026-10-23,Fri,15,Toast,Food,4,5.9,23.6
+2026-10-23,Fri,16,Espresso,Coffee,9,2.6,23.4
+2026-10-23,Fri,16,Melange,Coffee,11,3.9,42.9
+2026-10-23,Fri,16,Cappuccino,Coffee,9,3.8,34.2
+2026-10-23,Fri,16,Zwickl beer 0.5 l,Beer,4,4.9,19.6
+2026-10-23,Fri,16,Radler 0.5 l,Beer,2,4.5,9.0
+2026-10-23,Fri,16,Aperol Spritz,Cocktails,3,7.5,22.5
+2026-10-23,Fri,16,Hugo,Cocktails,3,7.2,21.6
+2026-10-23,Fri,16,Gin Tonic,Cocktails,4,8.9,35.6
+2026-10-23,Fri,16,Almdudler,Soft drinks,2,3.6,7.2
+2026-10-23,Fri,16,Linzer torte,Food,3,4.8,14.4
+2026-10-23,Fri,16,Toast,Food,4,5.9,23.6
+2026-10-23,Fri,17,Espresso,Coffee,5,2.6,13.0
+2026-10-23,Fri,17,Melange,Coffee,6,3.9,23.4
+2026-10-23,Fri,17,Cappuccino,Coffee,9,3.8,34.2
+2026-10-23,Fri,17,Zwickl beer 0.5 l,Beer,2,4.9,9.8
+2026-10-23,Fri,17,Radler 0.5 l,Beer,8,4.5,36.0
+2026-10-23,Fri,17,Grüner Veltliner 1/8 l,Wine,2,4.2,8.4
+2026-10-23,Fri,17,Aperol Spritz,Cocktails,6,7.5,45.0
+2026-10-23,Fri,17,Hugo,Cocktails,5,7.2,36.0
+2026-10-23,Fri,17,Almdudler,Soft drinks,3,3.6,10.8
+2026-10-23,Fri,17,Linzer torte,Food,2,4.8,9.6
+2026-10-23,Fri,17,Toast,Food,2,5.9,11.8
+2026-10-23,Fri,18,Espresso,Coffee,3,2.6,7.8
+2026-10-23,Fri,18,Melange,Coffee,2,3.9,7.8
+2026-10-23,Fri,18,Cappuccino,Coffee,5,3.8,19.0
+2026-10-23,Fri,18,Zwickl beer 0.5 l,Beer,3,4.9,14.7
+2026-10-23,Fri,18,Radler 0.5 l,Beer,6,4.5,27.0
+2026-10-23,Fri,18,Grüner Veltliner 1/8 l,Wine,4,4.2,16.8
+2026-10-23,Fri,18,Aperol Spritz,Cocktails,12,7.5,90.0
+2026-10-23,Fri,18,Hugo,Cocktails,5,7.2,36.0
+2026-10-23,Fri,18,Gin Tonic,Cocktails,8,8.9,71.2
+2026-10-23,Fri,18,Linzer torte,Food,3,4.8,14.4
+2026-10-23,Fri,18,Toast,Food,2,5.9,11.8
+2026-10-23,Fri,19,Espresso,Coffee,2,2.6,5.2
+2026-10-23,Fri,19,Melange,Coffee,4,3.9,15.6
+2026-10-23,Fri,19,Cappuccino,Coffee,2,3.8,7.6
+2026-10-23,Fri,19,Zwickl beer 0.5 l,Beer,13,4.9,63.7
+2026-10-23,Fri,19,Radler 0.5 l,Beer,9,4.5,40.5
+2026-10-23,Fri,19,Grüner Veltliner 1/8 l,Wine,5,4.2,21.0
+2026-10-23,Fri,19,Aperol Spritz,Cocktails,15,7.5,112.5
+2026-10-23,Fri,19,Hugo,Cocktails,12,7.2,86.4
+2026-10-23,Fri,19,Gin Tonic,Cocktails,10,8.9,89.0
+2026-10-23,Fri,19,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-23,Fri,19,Linzer torte,Food,2,4.8,9.6
+2026-10-23,Fri,19,Toast,Food,1,5.9,5.9
+2026-10-23,Fri,20,Melange,Coffee,3,3.9,11.7
+2026-10-23,Fri,20,Cappuccino,Coffee,1,3.8,3.8
+2026-10-23,Fri,20,Zwickl beer 0.5 l,Beer,14,4.9,68.6
+2026-10-23,Fri,20,Radler 0.5 l,Beer,12,4.5,54.0
+2026-10-23,Fri,20,Grüner Veltliner 1/8 l,Wine,9,4.2,37.8
+2026-10-23,Fri,20,Aperol Spritz,Cocktails,8,7.5,60.0
+2026-10-23,Fri,20,Hugo,Cocktails,13,7.2,93.6
+2026-10-23,Fri,20,Gin Tonic,Cocktails,16,8.9,142.4
+2026-10-23,Fri,20,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-23,Fri,20,Toast,Food,1,5.9,5.9
+2026-10-23,Fri,21,Melange,Coffee,1,3.9,3.9
+2026-10-23,Fri,21,Cappuccino,Coffee,2,3.8,7.6
+2026-10-23,Fri,21,Zwickl beer 0.5 l,Beer,12,4.9,58.8
+2026-10-23,Fri,21,Radler 0.5 l,Beer,8,4.5,36.0
+2026-10-23,Fri,21,Grüner Veltliner 1/8 l,Wine,8,4.2,33.6
+2026-10-23,Fri,21,Aperol Spritz,Cocktails,15,7.5,112.5
+2026-10-23,Fri,21,Hugo,Cocktails,13,7.2,93.6
+2026-10-23,Fri,21,Gin Tonic,Cocktails,14,8.9,124.6
+2026-10-23,Fri,21,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-23,Fri,21,Toast,Food,1,5.9,5.9
+2026-10-23,Fri,22,Melange,Coffee,1,3.9,3.9
+2026-10-23,Fri,22,Cappuccino,Coffee,1,3.8,3.8
+2026-10-23,Fri,22,Zwickl beer 0.5 l,Beer,11,4.9,53.9
+2026-10-23,Fri,22,Radler 0.5 l,Beer,6,4.5,27.0
+2026-10-23,Fri,22,Grüner Veltliner 1/8 l,Wine,5,4.2,21.0
+2026-10-23,Fri,22,Aperol Spritz,Cocktails,6,7.5,45.0
+2026-10-23,Fri,22,Hugo,Cocktails,10,7.2,72.0
+2026-10-23,Fri,22,Gin Tonic,Cocktails,8,8.9,71.2
+2026-10-23,Fri,22,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-23,Fri,22,Toast,Food,1,5.9,5.9
+2026-10-23,Fri,23,Zwickl beer 0.5 l,Beer,4,4.9,19.6
+2026-10-23,Fri,23,Radler 0.5 l,Beer,2,4.5,9.0
+2026-10-23,Fri,23,Grüner Veltliner 1/8 l,Wine,4,4.2,16.8
+2026-10-23,Fri,23,Aperol Spritz,Cocktails,4,7.5,30.0
+2026-10-23,Fri,23,Hugo,Cocktails,5,7.2,36.0
+2026-10-23,Fri,23,Gin Tonic,Cocktails,5,8.9,44.5
+2026-10-24,Sat,8,Espresso,Coffee,13,2.6,33.8
+2026-10-24,Sat,8,Melange,Coffee,11,3.9,42.9
+2026-10-24,Sat,8,Cappuccino,Coffee,11,3.8,41.8
+2026-10-24,Sat,8,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-24,Sat,8,Linzer torte,Food,2,4.8,9.6
+2026-10-24,Sat,8,Toast,Food,2,5.9,11.8
+2026-10-24,Sat,9,Espresso,Coffee,16,2.6,41.6
+2026-10-24,Sat,9,Melange,Coffee,15,3.9,58.5
+2026-10-24,Sat,9,Cappuccino,Coffee,13,3.8,49.4
+2026-10-24,Sat,9,Almdudler,Soft drinks,3,3.6,10.8
+2026-10-24,Sat,9,Linzer torte,Food,7,4.8,33.6
+2026-10-24,Sat,9,Toast,Food,6,5.9,35.4
+2026-10-24,Sat,10,Espresso,Coffee,8,2.6,20.8
+2026-10-24,Sat,10,Melange,Coffee,11,3.9,42.9
+2026-10-24,Sat,10,Cappuccino,Coffee,11,3.8,41.8
+2026-10-24,Sat,10,Almdudler,Soft drinks,2,3.6,7.2
+2026-10-24,Sat,10,Linzer torte,Food,2,4.8,9.6
+2026-10-24,Sat,10,Toast,Food,4,5.9,23.6
+2026-10-24,Sat,11,Espresso,Coffee,13,2.6,33.8
+2026-10-24,Sat,11,Melange,Coffee,9,3.9,35.1
+2026-10-24,Sat,11,Cappuccino,Coffee,7,3.8,26.6
+2026-10-24,Sat,11,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-24,Sat,11,Hugo,Cocktails,1,7.2,7.2
+2026-10-24,Sat,11,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-24,Sat,11,Linzer torte,Food,3,4.8,14.4
+2026-10-24,Sat,11,Toast,Food,3,5.9,17.7
+2026-10-24,Sat,12,Espresso,Coffee,10,2.6,26.0
+2026-10-24,Sat,12,Melange,Coffee,8,3.9,31.2
+2026-10-24,Sat,12,Cappuccino,Coffee,9,3.8,34.2
+2026-10-24,Sat,12,Zwickl beer 0.5 l,Beer,2,4.9,9.8
+2026-10-24,Sat,12,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-24,Sat,12,Aperol Spritz,Cocktails,1,7.5,7.5
+2026-10-24,Sat,12,Hugo,Cocktails,1,7.2,7.2
+2026-10-24,Sat,12,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-24,Sat,12,Almdudler,Soft drinks,3,3.6,10.8
+2026-10-24,Sat,12,Linzer torte,Food,7,4.8,33.6
+2026-10-24,Sat,12,Toast,Food,6,5.9,35.4
+2026-10-24,Sat,13,Espresso,Coffee,9,2.6,23.4
+2026-10-24,Sat,13,Melange,Coffee,11,3.9,42.9
+2026-10-24,Sat,13,Cappuccino,Coffee,4,3.8,15.2
+2026-10-24,Sat,13,Zwickl beer 0.5 l,Beer,1,4.9,4.9
+2026-10-24,Sat,13,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-24,Sat,13,Aperol Spritz,Cocktails,1,7.5,7.5
+2026-10-24,Sat,13,Hugo,Cocktails,2,7.2,14.4
+2026-10-24,Sat,13,Gin Tonic,Cocktails,2,8.9,17.8
+2026-10-24,Sat,13,Almdudler,Soft drinks,2,3.6,7.2
+2026-10-24,Sat,13,Linzer torte,Food,5,4.8,24.0
+2026-10-24,Sat,13,Toast,Food,4,5.9,23.6
+2026-10-24,Sat,14,Espresso,Coffee,12,2.6,31.2
+2026-10-24,Sat,14,Melange,Coffee,13,3.9,50.7
+2026-10-24,Sat,14,Cappuccino,Coffee,11,3.8,41.8
+2026-10-24,Sat,14,Zwickl beer 0.5 l,Beer,1,4.9,4.9
+2026-10-24,Sat,14,Radler 0.5 l,Beer,2,4.5,9.0
+2026-10-24,Sat,14,Aperol Spritz,Cocktails,1,7.5,7.5
+2026-10-24,Sat,14,Hugo,Cocktails,1,7.2,7.2
+2026-10-24,Sat,14,Gin Tonic,Cocktails,3,8.9,26.7
+2026-10-24,Sat,14,Almdudler,Soft drinks,2,3.6,7.2
+2026-10-24,Sat,14,Linzer torte,Food,3,4.8,14.4
+2026-10-24,Sat,14,Toast,Food,5,5.9,29.5
+2026-10-24,Sat,15,Espresso,Coffee,11,2.6,28.6
+2026-10-24,Sat,15,Melange,Coffee,11,3.9,42.9
+2026-10-24,Sat,15,Cappuccino,Coffee,12,3.8,45.6
+2026-10-24,Sat,15,Zwickl beer 0.5 l,Beer,2,4.9,9.8
+2026-10-24,Sat,15,Radler 0.5 l,Beer,2,4.5,9.0
+2026-10-24,Sat,15,Grüner Veltliner 1/8 l,Wine,1,4.2,4.2
+2026-10-24,Sat,15,Aperol Spritz,Cocktails,3,7.5,22.5
+2026-10-24,Sat,15,Gin Tonic,Cocktails,3,8.9,26.7
+2026-10-24,Sat,15,Almdudler,Soft drinks,4,3.6,14.4
+2026-10-24,Sat,15,Linzer torte,Food,2,4.8,9.6
+2026-10-24,Sat,15,Toast,Food,5,5.9,29.5
+2026-10-24,Sat,16,Espresso,Coffee,10,2.6,26.0
+2026-10-24,Sat,16,Melange,Coffee,10,3.9,39.0
+2026-10-24,Sat,16,Cappuccino,Coffee,16,3.8,60.8
+2026-10-24,Sat,16,Zwickl beer 0.5 l,Beer,2,4.9,9.8
+2026-10-24,Sat,16,Radler 0.5 l,Beer,2,4.5,9.0
+2026-10-24,Sat,16,Grüner Veltliner 1/8 l,Wine,1,4.2,4.2
+2026-10-24,Sat,16,Aperol Spritz,Cocktails,5,7.5,37.5
+2026-10-24,Sat,16,Hugo,Cocktails,5,7.2,36.0
+2026-10-24,Sat,16,Gin Tonic,Cocktails,4,8.9,35.6
+2026-10-24,Sat,16,Almdudler,Soft drinks,4,3.6,14.4
+2026-10-24,Sat,16,Linzer torte,Food,2,4.8,9.6
+2026-10-24,Sat,16,Toast,Food,3,5.9,17.7
+2026-10-24,Sat,17,Espresso,Coffee,6,2.6,15.6
+2026-10-24,Sat,17,Melange,Coffee,5,3.9,19.5
+2026-10-24,Sat,17,Cappuccino,Coffee,6,3.8,22.8
+2026-10-24,Sat,17,Zwickl beer 0.5 l,Beer,3,4.9,14.7
+2026-10-24,Sat,17,Radler 0.5 l,Beer,8,4.5,36.0
+2026-10-24,Sat,17,Grüner Veltliner 1/8 l,Wine,2,4.2,8.4
+2026-10-24,Sat,17,Aperol Spritz,Cocktails,3,7.5,22.5
+2026-10-24,Sat,17,Hugo,Cocktails,7,7.2,50.4
+2026-10-24,Sat,17,Gin Tonic,Cocktails,3,8.9,26.7
+2026-10-24,Sat,17,Almdudler,Soft drinks,2,3.6,7.2
+2026-10-24,Sat,17,Linzer torte,Food,2,4.8,9.6
+2026-10-24,Sat,17,Toast,Food,3,5.9,17.7
+2026-10-24,Sat,18,Espresso,Coffee,5,2.6,13.0
+2026-10-24,Sat,18,Melange,Coffee,4,3.9,15.6
+2026-10-24,Sat,18,Cappuccino,Coffee,4,3.8,15.2
+2026-10-24,Sat,18,Zwickl beer 0.5 l,Beer,10,4.9,49.0
+2026-10-24,Sat,18,Radler 0.5 l,Beer,11,4.5,49.5
+2026-10-24,Sat,18,Grüner Veltliner 1/8 l,Wine,6,4.2,25.2
+2026-10-24,Sat,18,Aperol Spritz,Cocktails,10,7.5,75.0
+2026-10-24,Sat,18,Hugo,Cocktails,7,7.2,50.4
+2026-10-24,Sat,18,Gin Tonic,Cocktails,11,8.9,97.9
+2026-10-24,Sat,18,Linzer torte,Food,2,4.8,9.6
+2026-10-24,Sat,18,Toast,Food,1,5.9,5.9
+2026-10-24,Sat,19,Espresso,Coffee,3,2.6,7.8
+2026-10-24,Sat,19,Melange,Coffee,3,3.9,11.7
+2026-10-24,Sat,19,Cappuccino,Coffee,1,3.8,3.8
+2026-10-24,Sat,19,Zwickl beer 0.5 l,Beer,9,4.9,44.1
+2026-10-24,Sat,19,Radler 0.5 l,Beer,13,4.5,58.5
+2026-10-24,Sat,19,Grüner Veltliner 1/8 l,Wine,6,4.2,25.2
+2026-10-24,Sat,19,Aperol Spritz,Cocktails,11,7.5,82.5
+2026-10-24,Sat,19,Hugo,Cocktails,9,7.2,64.8
+2026-10-24,Sat,19,Gin Tonic,Cocktails,16,8.9,142.4
+2026-10-24,Sat,19,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-24,Sat,19,Linzer torte,Food,1,4.8,4.8
+2026-10-24,Sat,19,Toast,Food,1,5.9,5.9
+2026-10-24,Sat,20,Espresso,Coffee,2,2.6,5.2
+2026-10-24,Sat,20,Melange,Coffee,2,3.9,7.8
+2026-10-24,Sat,20,Cappuccino,Coffee,1,3.8,3.8
+2026-10-24,Sat,20,Zwickl beer 0.5 l,Beer,14,4.9,68.6
+2026-10-24,Sat,20,Radler 0.5 l,Beer,10,4.5,45.0
+2026-10-24,Sat,20,Grüner Veltliner 1/8 l,Wine,5,4.2,21.0
+2026-10-24,Sat,20,Aperol Spritz,Cocktails,8,7.5,60.0
+2026-10-24,Sat,20,Hugo,Cocktails,11,7.2,79.2
+2026-10-24,Sat,20,Gin Tonic,Cocktails,14,8.9,124.6
+2026-10-24,Sat,20,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-24,Sat,20,Linzer torte,Food,1,4.8,4.8
+2026-10-24,Sat,20,Toast,Food,2,5.9,11.8
+2026-10-24,Sat,21,Cappuccino,Coffee,1,3.8,3.8
+2026-10-24,Sat,21,Zwickl beer 0.5 l,Beer,14,4.9,68.6
+2026-10-24,Sat,21,Radler 0.5 l,Beer,13,4.5,58.5
+2026-10-24,Sat,21,Grüner Veltliner 1/8 l,Wine,6,4.2,25.2
+2026-10-24,Sat,21,Aperol Spritz,Cocktails,8,7.5,60.0
+2026-10-24,Sat,21,Hugo,Cocktails,13,7.2,93.6
+2026-10-24,Sat,21,Gin Tonic,Cocktails,11,8.9,97.9
+2026-10-24,Sat,21,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-24,Sat,21,Linzer torte,Food,2,4.8,9.6
+2026-10-24,Sat,22,Melange,Coffee,1,3.9,3.9
+2026-10-24,Sat,22,Cappuccino,Coffee,1,3.8,3.8
+2026-10-24,Sat,22,Zwickl beer 0.5 l,Beer,14,4.9,68.6
+2026-10-24,Sat,22,Radler 0.5 l,Beer,7,4.5,31.5
+2026-10-24,Sat,22,Grüner Veltliner 1/8 l,Wine,7,4.2,29.4
+2026-10-24,Sat,22,Aperol Spritz,Cocktails,9,7.5,67.5
+2026-10-24,Sat,22,Hugo,Cocktails,5,7.2,36.0
+2026-10-24,Sat,22,Gin Tonic,Cocktails,11,8.9,97.9
+2026-10-24,Sat,23,Zwickl beer 0.5 l,Beer,7,4.9,34.3
+2026-10-24,Sat,23,Radler 0.5 l,Beer,8,4.5,36.0
+2026-10-24,Sat,23,Grüner Veltliner 1/8 l,Wine,5,4.2,21.0
+2026-10-24,Sat,23,Aperol Spritz,Cocktails,5,7.5,37.5
+2026-10-24,Sat,23,Hugo,Cocktails,5,7.2,36.0
+2026-10-24,Sat,23,Gin Tonic,Cocktails,6,8.9,53.4
+2026-10-24,Sat,23,Almdudler,Soft drinks,2,3.6,7.2
+2026-10-25,Sun,8,Espresso,Coffee,7,2.6,18.2
+2026-10-25,Sun,8,Melange,Coffee,8,3.9,31.2
+2026-10-25,Sun,8,Cappuccino,Coffee,4,3.8,15.2
+2026-10-25,Sun,8,Linzer torte,Food,2,4.8,9.6
+2026-10-25,Sun,9,Espresso,Coffee,9,2.6,23.4
+2026-10-25,Sun,9,Melange,Coffee,9,3.9,35.1
+2026-10-25,Sun,9,Cappuccino,Coffee,4,3.8,15.2
+2026-10-25,Sun,9,Linzer torte,Food,2,4.8,9.6
+2026-10-25,Sun,9,Toast,Food,2,5.9,11.8
+2026-10-25,Sun,10,Espresso,Coffee,8,2.6,20.8
+2026-10-25,Sun,10,Melange,Coffee,5,3.9,19.5
+2026-10-25,Sun,10,Cappuccino,Coffee,8,3.8,30.4
+2026-10-25,Sun,10,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-25,Sun,10,Linzer torte,Food,1,4.8,4.8
+2026-10-25,Sun,10,Toast,Food,1,5.9,5.9
+2026-10-25,Sun,11,Espresso,Coffee,2,2.6,5.2
+2026-10-25,Sun,11,Melange,Coffee,6,3.9,23.4
+2026-10-25,Sun,11,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-25,Sun,11,Linzer torte,Food,1,4.8,4.8
+2026-10-25,Sun,11,Toast,Food,2,5.9,11.8
+2026-10-25,Sun,12,Espresso,Coffee,4,2.6,10.4
+2026-10-25,Sun,12,Melange,Coffee,6,3.9,23.4
+2026-10-25,Sun,12,Cappuccino,Coffee,8,3.8,30.4
+2026-10-25,Sun,12,Zwickl beer 0.5 l,Beer,1,4.9,4.9
+2026-10-25,Sun,12,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-25,Sun,12,Aperol Spritz,Cocktails,1,7.5,7.5
+2026-10-25,Sun,12,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-25,Sun,12,Almdudler,Soft drinks,3,3.6,10.8
+2026-10-25,Sun,12,Linzer torte,Food,5,4.8,24.0
+2026-10-25,Sun,12,Toast,Food,2,5.9,11.8
+2026-10-25,Sun,13,Espresso,Coffee,6,2.6,15.6
+2026-10-25,Sun,13,Melange,Coffee,6,3.9,23.4
+2026-10-25,Sun,13,Cappuccino,Coffee,4,3.8,15.2
+2026-10-25,Sun,13,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-25,Sun,13,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-25,Sun,13,Linzer torte,Food,2,4.8,9.6
+2026-10-25,Sun,13,Toast,Food,4,5.9,23.6
+2026-10-25,Sun,14,Espresso,Coffee,6,2.6,15.6
+2026-10-25,Sun,14,Melange,Coffee,3,3.9,11.7
+2026-10-25,Sun,14,Cappuccino,Coffee,5,3.8,19.0
+2026-10-25,Sun,14,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-25,Sun,14,Gin Tonic,Cocktails,1,8.9,8.9
+2026-10-25,Sun,14,Almdudler,Soft drinks,3,3.6,10.8
+2026-10-25,Sun,14,Linzer torte,Food,2,4.8,9.6
+2026-10-25,Sun,14,Toast,Food,2,5.9,11.8
+2026-10-25,Sun,15,Espresso,Coffee,5,2.6,13.0
+2026-10-25,Sun,15,Melange,Coffee,7,3.9,27.3
+2026-10-25,Sun,15,Cappuccino,Coffee,4,3.8,15.2
+2026-10-25,Sun,15,Zwickl beer 0.5 l,Beer,2,4.9,9.8
+2026-10-25,Sun,15,Radler 0.5 l,Beer,2,4.5,9.0
+2026-10-25,Sun,15,Grüner Veltliner 1/8 l,Wine,1,4.2,4.2
+2026-10-25,Sun,15,Aperol Spritz,Cocktails,1,7.5,7.5
+2026-10-25,Sun,15,Hugo,Cocktails,1,7.2,7.2
+2026-10-25,Sun,15,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-25,Sun,15,Linzer torte,Food,5,4.8,24.0
+2026-10-25,Sun,15,Toast,Food,1,5.9,5.9
+2026-10-25,Sun,16,Espresso,Coffee,7,2.6,18.2
+2026-10-25,Sun,16,Melange,Coffee,6,3.9,23.4
+2026-10-25,Sun,16,Cappuccino,Coffee,6,3.8,22.8
+2026-10-25,Sun,16,Zwickl beer 0.5 l,Beer,1,4.9,4.9
+2026-10-25,Sun,16,Radler 0.5 l,Beer,2,4.5,9.0
+2026-10-25,Sun,16,Aperol Spritz,Cocktails,1,7.5,7.5
+2026-10-25,Sun,16,Hugo,Cocktails,1,7.2,7.2
+2026-10-25,Sun,16,Gin Tonic,Cocktails,2,8.9,17.8
+2026-10-25,Sun,16,Almdudler,Soft drinks,2,3.6,7.2
+2026-10-25,Sun,16,Linzer torte,Food,1,4.8,4.8
+2026-10-25,Sun,16,Toast,Food,2,5.9,11.8
+2026-10-25,Sun,17,Espresso,Coffee,4,2.6,10.4
+2026-10-25,Sun,17,Melange,Coffee,3,3.9,11.7
+2026-10-25,Sun,17,Cappuccino,Coffee,4,3.8,15.2
+2026-10-25,Sun,17,Zwickl beer 0.5 l,Beer,3,4.9,14.7
+2026-10-25,Sun,17,Radler 0.5 l,Beer,1,4.5,4.5
+2026-10-25,Sun,17,Grüner Veltliner 1/8 l,Wine,1,4.2,4.2
+2026-10-25,Sun,17,Aperol Spritz,Cocktails,2,7.5,15.0
+2026-10-25,Sun,17,Hugo,Cocktails,2,7.2,14.4
+2026-10-25,Sun,17,Gin Tonic,Cocktails,3,8.9,26.7
+2026-10-25,Sun,17,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-25,Sun,17,Linzer torte,Food,1,4.8,4.8
+2026-10-25,Sun,17,Toast,Food,2,5.9,11.8
+2026-10-25,Sun,18,Espresso,Coffee,3,2.6,7.8
+2026-10-25,Sun,18,Melange,Coffee,3,3.9,11.7
+2026-10-25,Sun,18,Cappuccino,Coffee,3,3.8,11.4
+2026-10-25,Sun,18,Zwickl beer 0.5 l,Beer,4,4.9,19.6
+2026-10-25,Sun,18,Radler 0.5 l,Beer,5,4.5,22.5
+2026-10-25,Sun,18,Aperol Spritz,Cocktails,3,7.5,22.5
+2026-10-25,Sun,18,Hugo,Cocktails,4,7.2,28.8
+2026-10-25,Sun,18,Gin Tonic,Cocktails,3,8.9,26.7
+2026-10-25,Sun,18,Toast,Food,2,5.9,11.8
+2026-10-25,Sun,19,Melange,Coffee,1,3.9,3.9
+2026-10-25,Sun,19,Zwickl beer 0.5 l,Beer,4,4.9,19.6
+2026-10-25,Sun,19,Radler 0.5 l,Beer,7,4.5,31.5
+2026-10-25,Sun,19,Grüner Veltliner 1/8 l,Wine,3,4.2,12.6
+2026-10-25,Sun,19,Aperol Spritz,Cocktails,6,7.5,45.0
+2026-10-25,Sun,19,Hugo,Cocktails,4,7.2,28.8
+2026-10-25,Sun,19,Gin Tonic,Cocktails,6,8.9,53.4
+2026-10-25,Sun,20,Espresso,Coffee,2,2.6,5.2
+2026-10-25,Sun,20,Cappuccino,Coffee,2,3.8,7.6
+2026-10-25,Sun,20,Zwickl beer 0.5 l,Beer,3,4.9,14.7
+2026-10-25,Sun,20,Radler 0.5 l,Beer,7,4.5,31.5
+2026-10-25,Sun,20,Grüner Veltliner 1/8 l,Wine,3,4.2,12.6
+2026-10-25,Sun,20,Aperol Spritz,Cocktails,4,7.5,30.0
+2026-10-25,Sun,20,Hugo,Cocktails,5,7.2,36.0
+2026-10-25,Sun,20,Gin Tonic,Cocktails,6,8.9,53.4
+2026-10-25,Sun,20,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-25,Sun,20,Linzer torte,Food,1,4.8,4.8
+2026-10-25,Sun,21,Espresso,Coffee,1,2.6,2.6
+2026-10-25,Sun,21,Cappuccino,Coffee,1,3.8,3.8
+2026-10-25,Sun,21,Zwickl beer 0.5 l,Beer,6,4.9,29.4
+2026-10-25,Sun,21,Radler 0.5 l,Beer,5,4.5,22.5
+2026-10-25,Sun,21,Grüner Veltliner 1/8 l,Wine,2,4.2,8.4
+2026-10-25,Sun,21,Aperol Spritz,Cocktails,4,7.5,30.0
+2026-10-25,Sun,21,Hugo,Cocktails,4,7.2,28.8
+2026-10-25,Sun,21,Gin Tonic,Cocktails,4,8.9,35.6
+2026-10-25,Sun,21,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-25,Sun,22,Zwickl beer 0.5 l,Beer,6,4.9,29.4
+2026-10-25,Sun,22,Radler 0.5 l,Beer,6,4.5,27.0
+2026-10-25,Sun,22,Grüner Veltliner 1/8 l,Wine,3,4.2,12.6
+2026-10-25,Sun,22,Aperol Spritz,Cocktails,4,7.5,30.0
+2026-10-25,Sun,22,Hugo,Cocktails,4,7.2,28.8
+2026-10-25,Sun,22,Gin Tonic,Cocktails,5,8.9,44.5
+2026-10-25,Sun,22,Almdudler,Soft drinks,1,3.6,3.6
+2026-10-25,Sun,23,Zwickl beer 0.5 l,Beer,2,4.9,9.8
+2026-10-25,Sun,23,Radler 0.5 l,Beer,5,4.5,22.5
+2026-10-25,Sun,23,Grüner Veltliner 1/8 l,Wine,1,4.2,4.2
+2026-10-25,Sun,23,Aperol Spritz,Cocktails,4,7.5,30.0
+2026-10-25,Sun,23,Hugo,Cocktails,3,7.2,21.6
+2026-10-25,Sun,23,Gin Tonic,Cocktails,2,8.9,17.8
+2026-10-25,Sun,23,Almdudler,Soft drinks,1,3.6,3.6
